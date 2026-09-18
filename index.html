@@ -175,14 +175,18 @@
     /* ================= ABOUT view ================= */
     .intro{ display:grid; grid-template-columns:1.3fr .9fr; gap:48px; align-items:start; padding:18px 0 24px; }
     .intro p{ font-size:18px; line-height:1.75; color:var(--ink-soft); margin:0 0 18px; }
-    .portrait{ aspect-ratio:4/5; border-radius:22px; background:linear-gradient(150deg,#66A3BF,#C8EEF2); display:flex; align-items:flex-end; padding:18px; color:var(--ink); box-shadow:0 16px 40px rgba(51,104,160,.16); }
-    .portrait span{ font-size:13px; letter-spacing:.06em; }
+    .portrait{ aspect-ratio:4/5; border-radius:22px; background:linear-gradient(150deg,#66A3BF,#C8EEF2); display:flex; align-items:flex-end; overflow:hidden; color:var(--ink); box-shadow:0 16px 40px rgba(51,104,160,.16); }
+    .portrait span{ font-size:13px; letter-spacing:.06em; padding:18px; }
+    .portrait img{ width:100%; height:100%; object-fit:cover; display:block; }
     .block2{ padding:40px 0; }
     .block2 h2{ font-family:"Cardo",serif; font-weight:400; font-size:clamp(26px,3vw,38px); margin:0 0 12px; color:var(--ink); }
     .cv-row{ display:grid; grid-template-columns:190px 1fr; gap:26px; padding:24px 0; border-top:1px solid rgba(102,163,191,.32); }
     .cv-row .when{ color:var(--mid); font-size:14px; }
     .cv-row h4{ font-family:"Cardo",serif; font-weight:400; font-size:22px; margin:0 0 6px; color:var(--ink); }
     .cv-row .org{ color:var(--ink-soft); font-size:15px; }
+    .cv-row ul{ margin:10px 0 0; padding-left:18px; color:var(--ink-soft); font-size:15px; line-height:1.6; max-width:44em; }
+    .cv-row ul li{ margin:0 0 4px; }
+    .about-socials{ padding:8px 0 48px; }
     .cv-row p{ margin:10px 0 0; color:var(--ink-soft); font-size:15px; line-height:1.6; max-width:44em; }
     .skill-pills{ display:flex; flex-wrap:wrap; gap:12px; }
     .skill-pill{ padding:10px 18px; border-radius:999px; font-size:14.5px; color:var(--ink); background:#fff; border:1px solid rgba(102,163,191,.35); transition:all .3s ease; }
@@ -387,22 +391,37 @@ creating an immersive and expressive self discovery experience</p><a class="proj
         <p>I love making things and keeping myself occupied with anything new that excites my mind. Design, for me, is less about decoration and more about clarity: giving people a little more ease in their day.</p>
         <a class="btn btn-primary" href="#">Download CV (PDF)<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"></path></svg></a>
       </div>
-      <div class="portrait"><span>[ Portrait / photo ]</span></div>
+      <div class="portrait"><img src="assets/vani-portrait.png" alt="Vanikalyani"></div>
     </section>
     <section class="wrap block2">
       <h2 class="serif">Experience</h2>
-      <div class="cv-row reveal"><div class="when">[ 20XX – Present ]</div><div><h4>[ Role / Title ]</h4><div class="org">[ Company ] · [ Location ]</div><p>[ One or two lines on what you owned and the impact you made. ]</p></div></div>
-      <div class="cv-row reveal"><div class="when">[ 20XX – 20XX ]</div><div><h4>[ Role / Title ]</h4><div class="org">[ Company ] · [ Location ]</div><p>[ One or two lines on what you owned and the impact you made. ]</p></div></div>
-      <div class="cv-row reveal"><div class="when">[ 20XX – 20XX ]</div><div><h4>[ Role / Title ]</h4><div class="org">[ Company ] · [ Location ]</div><p>[ One or two lines on what you owned and the impact you made. ]</p></div></div>
+      <div class="cv-row reveal"><div class="when">July – August 2026</div><div><h4>Design Intern</h4><div class="org">Sanyukt Foundation · Remote</div><p>Designed wireframes and responsive web interfaces alongside campaign graphics and digital communication assets, strengthening the foundation's digital presence and outreach.</p></div></div>
+      <div class="cv-row reveal"><div class="when">July 2023 – July 2025</div><div><h4>Senior Engineer – Project Management Group</h4><div class="org">Larsen &amp; Toubro (Precision Engineering Systems) · Coimbatore, Tamil Nadu</div><ul>
+        <li>Managed 2 full-scale ISRO/DRDL projects and contributed to 3 additional projects, coordinating clients, vendors, and cross-functional teams from execution through delivery.</li>
+        <li>Accelerated project delivery through cross-functional coordination, completing a 2-year project one month ahead of schedule.</li>
+        <li>Coordinated 25+ material releases across 15 vendors, resolving bottlenecks to maintain seamless project execution and delivery.</li>
+        <li>Drove CDD clearance and resolved project dependencies, ensuring critical technical requirements were met for milestone approvals.</li>
+      </ul></div></div>
     </section>
     <section class="wrap block2">
       <h2 class="serif">Education</h2>
-      <div class="cv-row reveal"><div class="when">[ 20XX – 20XX ]</div><div><h4>[ Degree / Programme ]</h4><div class="org">[ Institution ] · [ Location ]</div></div></div>
+      <div class="cv-row reveal"><div class="when">2025 – Present</div><div><h4>M.Des</h4><div class="org">Indian Institute of Technology, Guwahati · CGPA 9.38 (Current)</div></div></div>
+      <div class="cv-row reveal"><div class="when">2019 – 2023</div><div><h4>B.E</h4><div class="org">College of Engineering, Osmania University · CGPA 8.56</div></div></div>
+      <div class="cv-row reveal"><div class="when">2019</div><div><h4>Senior Secondary</h4><div class="org">Nasr Boys Junior College · 96.4%</div></div></div>
+      <div class="cv-row reveal"><div class="when">2017</div><div><h4>Secondary</h4><div class="org">Vivekananda Vidyankethan High School · CGPA 9.7</div></div></div>
     </section>
     <section class="wrap block2">
       <h2 class="serif">What I do</h2>
       <div class="skill-pills">
         <span class="skill-pill">Product Design</span><span class="skill-pill">UI Design</span><span class="skill-pill">UX Research</span><span class="skill-pill">Prototyping</span><span class="skill-pill">Design Thinking</span><span class="skill-pill">Micro Interactions</span><span class="skill-pill">Wireframing</span><span class="skill-pill">Design Systems</span><span class="skill-pill">Figma</span>
+      </div>
+    </section>
+    <section class="wrap about-socials">
+      <div class="socials">
+        <a href="https://www.linkedin.com/in/vani-kalyani-r/" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="2.5" width="19" height="19" rx="3"></rect><circle cx="7" cy="8" r="1.15" fill="currentColor" stroke="none"></circle><path d="M7 11v6"></path><path d="M11 17v-6M11 13.4c0-2 6-2.2 6 .4V17"></path></svg></a>
+        <a href="https://www.behance.net/vanikalyanir03" target="_blank" rel="noopener" aria-label="Behance" title="Behance"><span class="beh">Bē</span></a>
+        <a href="https://www.instagram.com/rvkchan?stkn=dm5nb3NoMWhpbnc5&utm_source=qr" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.2" cy="6.8" r="1.15" fill="currentColor" stroke="none"></circle></svg></a>
+        <a href="https://dribbble.com/43-vani-kalyani-rapelly" target="_blank" rel="noopener" aria-label="Dribbble" title="Dribbble"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.3"></circle><path d="M4.5 8.6C10.3 9.2 16.2 8.2 19.2 5.4"></path><path d="M2.9 13.9C9.6 12.2 15.8 13.3 20.6 16.7"></path><path d="M8.4 3.3C12.8 8 15.4 14.7 15.9 20.5"></path></svg></a>
       </div>
     </section>
   </div>
