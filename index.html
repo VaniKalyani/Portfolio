@@ -1,0 +1,553 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vanikalyani — Product & UI Designer, UX Researcher</title>
+<meta name="description" content="Portfolio of Vanikalyani — a product & UI designer and UX researcher from India. A calm, water-themed showcase of selected work.">
+<meta property="og:title" content="Vanikalyani: Portfolio">
+<meta property="og:description" content="Product & UI designer, UX researcher. Selected work, an aquarium of experiments, and more.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#128031;</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cardo:ital,wght@0,400;0,700;1,400&amp;family=Instrument+Sans:wght@400;500;600&amp;display=swap">
+  <style>
+    :root{ --paper:#F2EFE7; --deep:#3368A0; --mid:#66A3BF; --foam:#C8EEF2; --ink:#16324A; --ink-soft:#3a5a74; }
+    *{ box-sizing:border-box; }
+    html,body{ margin:0; }
+    body{ background:var(--paper); color:var(--ink); font-family:"Instrument Sans",system-ui,sans-serif; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+    .serif{ font-family:"Cardo",Georgia,serif; }
+    a{ color:var(--deep); text-decoration:none; }
+    a:hover{ color:var(--ink); }
+    .wrap{ width:100%; max-width:1200px; margin:0 auto; padding:0 40px; }
+    img{ display:block; max-width:100%; }
+
+    /* view switching (home visible by default even without JS) */
+    .view{ display:none; }
+    .view.active{ display:block; }
+
+    /* NAV */
+    nav{ position:sticky; top:0; z-index:50; background:rgba(242,239,231,.82); -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px); }
+    .navbar{ display:flex; align-items:center; justify-content:space-between; padding:18px 40px; max-width:1200px; margin:0 auto; }
+    .brand{ font-family:"Instrument Sans",sans-serif; font-size:22px; font-weight:600; color:var(--ink); letter-spacing:.14em; cursor:pointer; }
+    .navlinks{ display:flex; gap:30px; align-items:center; font-size:15px; }
+    .navlinks a{ color:var(--ink-soft); cursor:pointer; position:relative; }
+    .navlinks a::after{ content:""; position:absolute; left:0; right:100%; bottom:-5px; height:1.5px; background:var(--deep); transition:right .3s ease; }
+    .navlinks a:hover{ color:var(--deep); } .navlinks a:hover::after{ right:0; }
+    .navlinks a.active{ color:var(--deep); } .navlinks a.active::after{ right:0; }
+
+    /* shared entrance (position only — can never hide content) */
+    @keyframes heroIn{ from{ transform:translateY(16px); } to{ transform:none; } }
+    @keyframes floatY{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-9px); } }
+
+    /* ================= HOME: HERO ================= */
+    .hero{ position:relative; overflow:visible; }
+    .hero-inner{ display:grid; grid-template-columns:1.05fr .95fr; gap:40px; align-items:center; min-height:74vh; padding:44px 0 84px; }
+    .kicker{ display:inline-flex; align-items:center; gap:10px; font-size:14px; letter-spacing:.14em; text-transform:uppercase; color:var(--mid); }
+    h1.headline{ font-family:"Cardo",serif; font-weight:400; font-size:clamp(34px,4.6vw,62px); line-height:1.06; margin:22px 0 0; color:var(--ink); min-height:1.9em; }
+    h1.headline em{ color:var(--deep); font-style:italic; }
+    /* Word-cycler: the current role dissolves upward as a wave, the next rises in as a wave */
+    .rotator{ display:inline-block; color:var(--deep); font-style:italic; white-space:nowrap; }
+    .rotator .r-letter{ display:inline-block; will-change:transform,opacity; }
+    @keyframes letterOut{ from{ transform:translateY(0); opacity:1; } to{ transform:translateY(-0.7em); opacity:0; } }
+    @keyframes letterIn{ from{ transform:translateY(0.8em); opacity:0; } to{ transform:translateY(0); opacity:1; } }
+    .lede{ font-size:clamp(16px,1.3vw,19px); line-height:1.65; color:var(--ink-soft); max-width:30em; margin:26px 0 0; }
+    .cta-row{ display:flex; gap:16px; margin-top:34px; }
+    .hero-copy.enter .kicker{ animation:heroIn .8s .05s ease both; }
+    .hero-copy.enter .headline{ animation:heroIn .9s .16s ease both; }
+    .hero-copy.enter .lede{ animation:heroIn .9s .3s ease both; }
+    .hero-copy.enter .cta-row{ animation:heroIn .9s .44s ease both; }
+    .btn{ display:inline-flex; align-items:center; gap:10px; padding:14px 26px; border-radius:999px; font-size:15px; font-weight:500; cursor:pointer; transition:transform .3s ease, box-shadow .3s ease; }
+    .btn-primary{ background:var(--deep); color:#fff; box-shadow:0 10px 26px rgba(51,104,160,.28); }
+    .btn-primary:hover{ transform:translateY(-3px); box-shadow:0 16px 34px rgba(51,104,160,.36); color:#fff; }
+    .btn-ghost{ color:var(--ink); border:1px solid rgba(22,50,74,.22); }
+    .btn-ghost:hover{ border-color:var(--deep); color:var(--deep); transform:translateY(-3px); }
+
+    .kolam-wrap{ position:relative; width:min(470px,44vw); aspect-ratio:1/1; margin:0 auto; }
+    .kolam-art{ position:absolute; inset:6%; animation:kolamIn 1.3s ease both; }
+    .kolam-art svg{ width:100%; height:100%; display:block; }
+    .kolam-art svg path{ fill:var(--ink); }
+    .kolam-art svg .kc{ fill:#3CAEBB; }
+    .kolam-glow{ position:absolute; inset:16%; border-radius:50%; background:radial-gradient(circle, rgba(60,174,187,.28), rgba(60,174,187,0) 68%); filter:blur(8px); animation:breathe 7s ease-in-out infinite; }
+    @keyframes kolamIn{ from{opacity:0; scale:.94;} to{opacity:1; scale:1;} }
+    @keyframes breathe{ 0%,100%{opacity:.45; scale:.97;} 50%{opacity:.8; scale:1.03;} }
+    .kfish{ position:absolute; width:88px; height:63px; z-index:3; transform:translate(-30%,-50.5%); }
+    .kfish.n{ left:50%; top:11.4%; } .kfish.e{ left:88.5%; top:50%; } .kfish.s{ left:50%; top:88.5%; } .kfish.w{ left:11.3%; top:50%; }
+    .fish-inner{ width:100%; height:100%; cursor:pointer; transform-origin:30% 50.5%; opacity:1; rotate:0deg; transition:rotate .45s cubic-bezier(.2,.7,.2,1); }
+    .fish-inner.spin{ animation:fishIn .05s cubic-bezier(.2,.8,.2,1) both; }
+    .kfish.n .fish-inner{ animation-delay:0s; } .kfish.e .fish-inner{ animation-delay:.02s; } .kfish.s .fish-inner{ animation-delay:.04s; } .kfish.w .fish-inner{ animation-delay:.06s; }
+    @keyframes fishIn{ from{opacity:0; rotate:-360deg; scale:.5;} to{opacity:1; rotate:0deg; scale:1;} }
+    .fish-svg{ width:100%; height:100%; display:block; filter:drop-shadow(0 5px 9px rgba(22,50,74,.22)); }
+    .fish-svg .fb{ fill:var(--fc,#3CAEBB); } .fish-svg .fe{ fill:#383838; }
+
+    /* ================= HOME: SKILLS ================= */
+    .skills{ position:relative; padding:34px 0; margin:0 0 10px; background:linear-gradient(105deg, var(--deep), var(--mid) 60%, #7fbdd4); overflow:hidden; }
+    .skills::before{ content:""; position:absolute; inset:0; background:radial-gradient(120% 140% at 20% -20%, rgba(255,255,255,.28), transparent 55%); pointer-events:none; }
+    .marquee{ position:relative; display:flex; overflow:hidden; -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent); mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent); }
+    .track{ display:flex; gap:22px; width:max-content; padding:30px 11px; animation:slideL 30s linear infinite; }
+    .marquee:hover .track{ animation-play-state:paused; }
+    @keyframes slideL{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
+    .chip{ display:inline-flex; align-items:center; gap:12px; white-space:nowrap; padding:14px 26px; border-radius:999px; font-size:17px; font-weight:500; color:#fff; background:rgba(255,255,255,.16); -webkit-backdrop-filter:blur(12px) saturate(150%); backdrop-filter:blur(12px) saturate(150%); border:1px solid rgba(255,255,255,.42); box-shadow:0 8px 30px rgba(22,50,74,.20), inset 0 1px 0 rgba(255,255,255,.55); animation:wave 3.4s ease-in-out infinite; }
+    .chip .cdot{ width:6px; height:6px; border-radius:50%; background:var(--foam); box-shadow:0 0 10px var(--foam); }
+    @keyframes wave{ 0%,100%{transform:translateY(0);} 50%{transform:translateY(-14px);} }
+
+    /* ================= shared section bits ================= */
+    .section{ padding:90px 0; }
+    .eyebrow{ font-size:13px; letter-spacing:.16em; text-transform:uppercase; color:var(--mid); margin:0 0 14px; }
+    .sec-title{ font-family:"Cardo",serif; font-weight:400; font-size:clamp(28px,3.4vw,44px); line-height:1.12; margin:0; color:var(--ink); }
+    .sec-head{ display:flex; align-items:flex-end; justify-content:space-between; gap:20px; flex-wrap:wrap; }
+    .textlink{ font-size:15px; font-weight:500; color:var(--deep); cursor:pointer; display:inline-flex; align-items:center; gap:8px; }
+    .textlink svg{ transition:transform .3s ease; } .textlink:hover svg{ transform:translateX(5px); }
+    .reveal{ opacity:0; translate:0 40px; transition:opacity .8s cubic-bezier(.2,.7,.2,1), translate .8s cubic-bezier(.2,.7,.2,1); }
+    .reveal.in{ opacity:1; translate:0 0; }
+
+    /* ================= HOME: bento preview ================= */
+    .bento{ display:flex; flex-direction:column; gap:20px; max-width:900px; margin:40px auto 0; padding:0 30px; }
+    .band{ display:grid; grid-template-columns:1.7fr 1fr; gap:22px; }
+    .band.rev{ grid-template-columns:1fr 1.7fr; }
+    .band.rev .tile-big{ order:2; } .band.rev .side{ order:1; }
+    .tile-big{ display:block; text-decoration:none; position:relative; min-height:300px; border-radius:24px; overflow:hidden; color:#fff; cursor:pointer; box-shadow:0 14px 34px rgba(51,104,160,.16); animation:floatY 7s ease-in-out infinite; transition:scale .4s ease, box-shadow .4s ease; }
+    .tile-big:hover{ scale:1.015; box-shadow:0 30px 56px rgba(51,104,160,.26); }
+    .tile-big .cover{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; }
+    .tile-big .scrim{ position:absolute; inset:0; background:linear-gradient(180deg, rgba(22,50,74,.05) 30%, rgba(22,50,74,.62)); z-index:1; }
+    .tb-content{ position:absolute; inset:0; z-index:2; padding:34px; display:flex; flex-direction:column; justify-content:flex-end; }
+    .tb-content .tag{ font-size:12px; letter-spacing:.14em; text-transform:uppercase; opacity:.9; }
+    .tb-content h3{ font-family:"Cardo",serif; font-weight:400; font-size:clamp(28px,3vw,40px); margin:8px 0 0; }
+    .band:nth-child(2) .tile-big{ animation-delay:-2.3s; } .band:nth-child(3) .tile-big{ animation-delay:-4.6s; }
+    .side{ display:flex; flex-direction:column; gap:22px; }
+    .mini{ flex:1; min-height:138px; border-radius:22px; overflow:hidden; display:flex; align-items:center; justify-content:center; animation:floatY 6s ease-in-out infinite; transition:scale .4s ease; }
+    .mini:nth-child(2){ animation-delay:-3s; } .mini:hover{ scale:1.03; }
+    .fish-mini{ background:linear-gradient(140deg,#eaf6f8,#dcf2f6); }
+    .fish-mini svg{ width:26%; opacity:.72; filter:drop-shadow(0 5px 8px rgba(51,104,160,.16)); }
+    .kolam-mini{ background:%#3a85f5; border:1px solid rgba(102,163,191,.30); }
+    .km-img{ height:66%; width:auto; max-width:78%; object-fit:contain; }
+
+    /* ================= HOME: about me + gallery ================= */
+    .about-grid{ display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:end; margin-bottom:44px; }
+    .about-copy{ font-size:17px; line-height:1.75; color:var(--ink-soft); max-width:34em; }
+    .about-copy p{ margin:0 0 18px; }
+    .gallery{ position:relative; overflow:hidden; -webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent); mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent); }
+    .gtrack{ display:flex; gap:22px; width:max-content; animation:slideR 42s linear infinite; }
+    .gallery:hover .gtrack{ animation-play-state:paused; }
+    @keyframes slideR{ from{transform:translateX(-50%);} to{transform:translateX(0);} }
+    .photo{ width:236px; height:300px; border-radius:18px; flex:0 0 auto; overflow:hidden; position:relative; box-shadow:0 14px 34px rgba(51,104,160,.18); background:#dfeef3; }
+    .photo-img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+    /* ================= WORK view ================= */
+    .page-hero{ padding:56px 0 20px; }
+    .page-title{ font-family:"Cardo",serif; font-weight:400; font-size:clamp(40px,6vw,78px); line-height:1.03; margin:0; color:var(--ink); }
+    .page-lede{ font-family:"Cardo",serif; font-size:clamp(20px,2.2vw,28px); line-height:1.35; color:var(--ink-soft); max-width:24em; margin:24px 0 0; }
+    .works{ display:flex; flex-direction:column; gap:96px; padding:52px 0 40px; }
+    .work-grid{ display:grid; grid-template-columns:1.9fr 1fr; gap:24px; align-items:stretch; }
+    .work.rev .work-grid{ grid-template-columns:1fr 1.9fr; }
+    .work.rev .collage{ order:2; } .work.rev .wside{ order:1; }
+    .collage{ display:block; position:relative; min-height:440px; border-radius:26px; overflow:hidden; background:#e6eff4; box-shadow:0 16px 40px rgba(51,104,160,.14); animation:floatY 8s ease-in-out infinite; }
+    .proj-link{ display:inline-flex; align-items:center; gap:8px; margin-top:16px; font-size:14px; font-weight:500; color:var(--deep); }
+    .proj-link svg{ transition:transform .3s ease; } .work:hover .proj-link svg{ transform:translate(3px,-3px); }
+    .collage img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+    .wside{ display:flex; flex-direction:column; gap:24px; }
+    .wtile{ flex:1; min-height:200px; border-radius:26px; overflow:hidden; display:flex; align-items:center; justify-content:center; animation:floatY 6.5s ease-in-out infinite; transition:scale .4s ease; }
+    .wtile:nth-child(2){ animation-delay:-3s; } .wtile:hover{ scale:1.03; }
+    .appicon{ background:linear-gradient(140deg,#3368A0,#2c577f); } .appicon svg{ width:42%; }
+    .blank{ background:#fff; border:1px solid rgba(102,163,191,.30); } .blank svg{ width:46%; opacity:.85; }
+    .work-meta{ margin-top:26px; max-width:60%; }
+    .work.rev .work-meta{ margin-left:auto; text-align:right; }
+    .work-meta h3{ font-family:"Cardo",serif; font-weight:400; font-size:clamp(28px,3.4vw,44px); margin:0; color:var(--ink); }
+    .work-meta h3 .cat{ color:var(--mid); font-style:italic; font-size:.6em; margin-left:12px; }
+    .work-meta p{ font-size:17px; line-height:1.6; color:var(--ink-soft); margin:12px 0 0; }
+
+    /* ================= AQUARIUM view ================= */
+    .garden{ column-count:3; column-gap:18px; padding:52px 0 40px; }
+    .g-img, .g-vid{ width:100%; height:auto; display:block; }
+    .g-vid{ background:#16324A; }
+    .g-item{ break-inside:avoid; margin:0 0 24px; border-radius:22px; overflow:hidden; position:relative; box-shadow:0 12px 30px rgba(51,104,160,.12); opacity:0; transform:translateY(38px) scale(.95); filter:blur(8px); transition:opacity .9s cubic-bezier(.2,.8,.2,1), transform .9s cubic-bezier(.2,.8,.2,1), filter .9s ease, box-shadow .4s ease; }
+    .g-item.in{ opacity:1; transform:none; filter:blur(0); }
+    .g-item:hover{ box-shadow:0 24px 46px rgba(51,104,160,.24); }
+    .g-media{ position:relative; overflow:hidden; }
+    .g-media .label{ position:absolute; left:16px; bottom:14px; color:#fff; font-size:13px; z-index:2; }
+    .g-media::after{ content:""; position:absolute; inset:0; background:linear-gradient(180deg,transparent 55%,rgba(22,50,74,.4)); z-index:1; }
+    .badge{ position:absolute; top:14px; left:14px; z-index:2; display:inline-flex; align-items:center; gap:6px; padding:5px 11px; border-radius:999px; font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:#fff; background:rgba(22,50,74,.32); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); }
+    .badge .play{ width:0; height:0; border-left:7px solid #fff; border-top:5px solid transparent; border-bottom:5px solid transparent; }
+    .a1{ background:linear-gradient(150deg,#3368A0,#66A3BF); } .a2{ background:linear-gradient(150deg,#66A3BF,#C8EEF2); } .a3{ background:linear-gradient(150deg,#2c577f,#4f86b0); } .a4{ background:linear-gradient(150deg,#7fbdd4,#C8EEF2); } .a5{ background:linear-gradient(150deg,#4f86b0,#7fbdd4); } .a6{ background:linear-gradient(150deg,#2f5c88,#66A3BF); } .a7{ background:linear-gradient(150deg,#C8EEF2,#66A3BF); } .a8{ background:linear-gradient(150deg,#3368A0,#2c577f); }
+    .h1x{ height:340px; } .h2x{ height:240px; } .h3x{ height:420px; } .h4x{ height:290px; } .h5x{ height:200px; }
+
+    /* ================= ABOUT view ================= */
+    .intro{ display:grid; grid-template-columns:1.3fr .9fr; gap:48px; align-items:start; padding:18px 0 24px; }
+    .intro p{ font-size:18px; line-height:1.75; color:var(--ink-soft); margin:0 0 18px; }
+    .portrait{ aspect-ratio:4/5; border-radius:22px; background:linear-gradient(150deg,#66A3BF,#C8EEF2); display:flex; align-items:flex-end; padding:18px; color:var(--ink); box-shadow:0 16px 40px rgba(51,104,160,.16); }
+    .portrait span{ font-size:13px; letter-spacing:.06em; }
+    .block2{ padding:40px 0; }
+    .block2 h2{ font-family:"Cardo",serif; font-weight:400; font-size:clamp(26px,3vw,38px); margin:0 0 12px; color:var(--ink); }
+    .cv-row{ display:grid; grid-template-columns:190px 1fr; gap:26px; padding:24px 0; border-top:1px solid rgba(102,163,191,.32); }
+    .cv-row .when{ color:var(--mid); font-size:14px; }
+    .cv-row h4{ font-family:"Cardo",serif; font-weight:400; font-size:22px; margin:0 0 6px; color:var(--ink); }
+    .cv-row .org{ color:var(--ink-soft); font-size:15px; }
+    .cv-row p{ margin:10px 0 0; color:var(--ink-soft); font-size:15px; line-height:1.6; max-width:44em; }
+    .skill-pills{ display:flex; flex-wrap:wrap; gap:12px; }
+    .skill-pill{ padding:10px 18px; border-radius:999px; font-size:14.5px; color:var(--ink); background:#fff; border:1px solid rgba(102,163,191,.35); transition:all .3s ease; }
+    .skill-pill:hover{ background:var(--foam); border-color:var(--mid); }
+
+    /* ================= FOOTER (shared) ================= */
+    footer{ position:relative; margin-top:40px; }
+    .foot-contact{ display:grid; grid-template-columns:1.5fr 1fr; gap:40px; align-items:end; padding:88px 40px 68px; max-width:1200px; margin:0 auto; }
+    .foot-lead{ font-family:"Cardo",serif; font-style:italic; font-size:clamp(28px,3.4vw,46px); line-height:1.12; margin:10px 0 22px; color:var(--ink); }
+    .foot-email{ display:inline-block; font-size:clamp(17px,1.6vw,21px); color:var(--deep); border-bottom:1px solid rgba(51,104,160,.4); padding-bottom:2px; }
+    .foot-email:hover{ color:var(--ink); border-color:var(--ink); }
+    .foot-tag{ margin:22px 0 0; font-size:15px; color:var(--ink-soft); max-width:26em; }
+    .socials{ display:flex; flex-wrap:wrap; gap:14px; }
+    .socials a{ width:48px; height:48px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; border:1px solid rgba(51,104,160,.35); color:var(--deep); transition:all .3s ease; }
+    .socials a:hover{ background:var(--deep); color:#fff; border-color:var(--deep); transform:translateY(-3px); }
+    .socials svg{ width:22px; height:22px; }
+    .socials .beh{ font-family:"Instrument Sans",sans-serif; font-weight:600; font-size:16px; }
+    .aquarium-band{ position:relative; height:360px; overflow:hidden; background:linear-gradient(180deg,#6aa4c6,#2f5c88 70%,#234c72); }
+    .aq-hint{ position:absolute; top:22px; left:0; right:0; text-align:center; font-size:12.5px; color:rgba(255,255,255,.62); z-index:2; }
+    .foot-fishes{ position:absolute; inset:0; z-index:1; }
+    .swimfish{ position:absolute; width:64px; height:46px; cursor:pointer; animation:footBob 6s ease-in-out infinite; }
+    .swimfish .fish-svg{ filter:drop-shadow(0 6px 11px rgba(22,50,74,.35)); }
+    .swimfish.swim{ animation:swimAway 3s cubic-bezier(.4,0,.35,1); }
+    .sf1{ top:70px; left:14%; } .sf2{ top:150px; left:40%; animation-delay:.8s; } .sf3{ top:96px; left:64%; animation-delay:1.4s; } .sf4{ top:190px; left:84%; animation-delay:.4s; } .sf5{ top:210px; left:26%; animation-delay:1.1s; }
+    @keyframes footBob{ 0%,100%{translate:0 0;} 50%{translate:0 -11px;} }
+    @keyframes swimAway{ 0%{translate:0 0;} 42%{translate:-130vw 8px;} 42.01%{translate:130vw 8px;} 100%{translate:0 0;} }
+    .waves{ position:absolute; left:0; bottom:0; width:100%; height:130px; display:block; z-index:2; }
+    .waves path{ animation:drift 14s ease-in-out infinite alternate; }
+    .waves .wv2{ animation-duration:11s; } .waves .wv3{ animation-duration:9s; }
+    @keyframes drift{ from{transform:translateX(0);} to{transform:translateX(-40px);} }
+    .foot-note{ position:absolute; left:0; right:0; bottom:14px; z-index:3; display:flex; justify-content:space-between; padding:0 40px; font-size:12.5px; color:rgba(255,255,255,.7); }
+    /* Sub-page footer: a single fish that swims off and takes you home */
+    .backfoot{ display:none; position:relative; height:250px; overflow:hidden; background:linear-gradient(180deg,#6aa4c6,#2f5c88 70%,#234c72); }
+    .backfoot .bh{ position:absolute; left:0; right:0; top:64px; z-index:3; display:flex; flex-direction:column; align-items:center; gap:14px; cursor:pointer; }
+    .backfoot .bf-fish{ width:88px; height:63px; animation:footBob 5s ease-in-out infinite; }
+    .backfoot .bf-fish .fish-svg{ width:100%; height:100%; display:block; filter:drop-shadow(0 6px 11px rgba(22,50,74,.35)); }
+    .backfoot .bf-fish.go{ animation:swimHome 1s cubic-bezier(.4,0,.35,1) forwards; }
+    .backfoot .bf-label{ color:#fff; font-size:14px; letter-spacing:.03em; }
+    .backfoot .bh:hover .bf-label{ color:var(--foam); }
+    @keyframes swimHome{ from{ translate:0 0; } to{ translate:-130vw 0; } }
+
+    @media (max-width:860px){
+      .hero-inner{ grid-template-columns:1fr; } .kolam-wrap{ width:min(360px,74vw); margin:24px auto 0; }
+      .about-grid{ grid-template-columns:1fr; gap:22px; }
+      .band, .band.rev{ grid-template-columns:1fr; } .band.rev .tile-big{ order:0; } .band.rev .side{ order:1; }
+      .side{ flex-direction:row; } .tile-big{ min-height:260px; } .mini{ min-height:150px; }
+      .work-grid, .work.rev .work-grid{ grid-template-columns:1fr; } .work.rev .collage{ order:0; } .work.rev .wside{ order:1; }
+      .wside{ flex-direction:row; } .collage{ min-height:260px; } .wtile{ min-height:150px; }
+      .work-meta, .work.rev .work-meta{ max-width:100%; text-align:left; margin-left:0; }
+      .garden{ column-count:2; }
+      .intro{ grid-template-columns:1fr; gap:24px; } .cv-row{ grid-template-columns:1fr; gap:6px; }
+      .foot-contact{ grid-template-columns:1fr; gap:26px; padding:60px 22px 50px; }
+      .wrap{ padding:0 22px; } .navbar{ padding:14px 22px; } .navlinks{ gap:16px; font-size:14px; }
+    }
+    @media (max-width:560px){ .garden{ column-count:1; } }
+    @media (prefers-reduced-motion:reduce){ *{ animation-duration:.001s !important; animation-iteration-count:1 !important; } .reveal,.g-item{ opacity:1; transform:none; translate:0 0; filter:none; } }
+  </style>
+</head>
+<body>
+<div class="page">
+  <nav><div class="navbar">
+    <div class="brand" data-view="home">VANI</div>
+    <div class="navlinks">
+      <a data-view="home" class="active">Home</a>
+      <a data-view="work">Work</a>
+      <a data-view="aquarium">Aquarium</a>
+      <a data-view="about">About/cv</a>
+    </div>
+  </div></nav>
+
+  <!-- ===================== HOME ===================== -->
+  <div class="view active" id="v-home">
+    <header class="hero">
+      <div class="wrap hero-inner">
+        <div class="hero-copy">
+          <span class="kicker">Hi, I’m Vanikalyani</span>
+          <h1 class="headline serif"><span class="rotator" aria-label="Product designer, Interaction designer, UX researcher">Product designer</span></h1>
+          <p class="lede">I notice how things connect. Then I design what comes next.</p>
+          <div class="cta-row"><a class="btn btn-primary" data-view="work">See my work
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+            <a class="btn btn-ghost" data-view="about">About me</a>
+          </div>
+        </div>
+        <div class="hero-art"><div class="kolam-wrap">
+          <div class="kolam-glow"></div>
+          <div class="kolam-art"><svg viewBox="0 0 546 546" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M270.98 0.0550616C271.607 0.0214596 272.241 0.00302151 272.871 4.78781e-05C281.825 -0.0157124 290.535 3.86042 296.845 10.1648C303.164 16.5269 306.631 25.1814 306.449 34.1466C306.307 47.7774 299.331 54.6159 290.52 63.3673L277.79 75.8883C280.513 78.2744 283.118 81.0544 285.708 83.6118L302.857 100.773C305.596 103.517 308.894 106.958 311.802 109.423C317.434 103.152 325.751 95.0784 331.96 89.3773C344.684 77.6918 366.092 79.6283 377.204 93.1339C382.601 99.722 385.162 108.183 384.323 116.658C382.905 129.692 375.331 135.718 366.627 144.391C363.585 147.421 359.535 151.776 356.341 154.328C362.85 160.18 370.207 168.389 376.719 174.622C380.175 177.929 388.792 186.265 391.546 189.637C392.955 187.578 395.795 184.936 397.63 183.092L407.455 173.234C414.74 165.973 421.925 161.327 432.656 161.406C441.188 161.494 449.333 164.963 455.307 171.052C461.4 177.275 464.248 185.017 464.097 193.619C463.856 207.345 457.775 212.804 448.866 221.695L436.403 234.106C438.684 236.916 443.825 241.64 446.517 244.411C454.186 252.308 462.491 260.022 469.999 268.047L482.426 255.44C491.207 246.569 497.883 239.724 511.538 239.463C520.471 239.249 529.115 242.625 535.535 248.835C542.056 255.244 545.779 263.609 545.833 272.79C545.809 281.898 542.119 290.616 535.589 296.971C529.297 303.121 520.819 306.519 512.02 306.424C498.166 306.287 491.35 299.389 482.42 290.382L470.005 277.794C460.064 288.954 446.017 300.727 436.376 311.839C438.922 313.879 441.726 317.097 444.108 319.446C455.44 330.627 465.349 338.162 463.996 355.644C462.643 373.161 447.227 385.6 429.912 384.363C417.345 383.462 409.926 375.267 401.74 366.866C398.424 363.456 394.552 360 391.519 356.298C390.136 357.919 388.23 359.822 386.657 361.306C376.425 370.937 366.752 382.127 356.335 391.461C359.267 393.879 362.975 397.935 365.797 400.659C369.389 404.373 373.41 407.947 376.746 411.878C395.379 433.83 378.081 466.956 349.24 463.923C336.245 462.558 330.661 455.391 321.954 446.643C318.719 443.396 314.704 439.845 311.879 436.393C308.703 438.938 303.25 444.719 300.151 447.823C292.768 455.261 285.337 462.647 277.858 469.989C288.917 481.931 304.588 491.857 306.289 508.691C307.276 517.635 304.594 526.601 298.849 533.529C292.224 541.469 284.106 544.895 274.004 545.802C273.745 545.814 273.484 545.825 273.222 545.834C264.011 545.817 255.196 542.079 248.777 535.471C242.661 529.209 239.303 520.758 239.451 512.006C239.581 498.063 246.401 491.411 255.424 482.434L268.078 469.888C264.846 467.119 261.554 463.495 258.434 460.485C250.318 452.656 242.394 444.02 234.142 436.381L221.858 448.73C219.115 451.487 216.488 454.279 213.498 456.768C199.861 468.121 179.384 466.233 168.306 452.23C163.03 445.572 160.634 437.08 161.654 428.647C162.142 424.849 163.452 420.49 165.345 417.162C168.324 411.926 184.472 395.461 189.612 391.497C186.149 388.607 178.981 381.08 175.598 377.643C168.719 370.658 160.942 363.363 154.324 356.283C151.316 360.559 145.195 365.543 141.466 369.572C135.914 375.573 131.281 379.864 123.524 382.653C103.33 389.918 81.1653 374.164 81.7478 352.623C82.0205 338.861 87.6838 333.374 97.0471 324.04L109.47 311.682C99.2613 300.471 86.4994 289.011 75.8805 277.803C70.4932 283.614 64.3301 289.049 59.0388 294.848C46.6033 308.473 25.388 310.769 11.2668 297.92C4.44585 291.773 0.393678 283.132 0.0270295 273.958C-0.726786 255.825 14.3903 239.802 32.3831 239.466C45.0047 239.23 52.936 244.492 61.2797 253.32C65.8918 258.2 71.148 263.447 75.9992 268.041C78.2999 265.309 81.7181 262.094 84.3271 259.469C89.71 254.032 95.125 248.627 100.573 243.254C103.217 240.621 107.22 236.773 109.418 234.016C103.182 228.464 95.0444 219.978 89.3561 213.822C77.6811 201.186 79.6541 179.737 93.1205 168.697C99.6637 163.258 108.128 160.695 116.59 161.593C120.697 162.039 125.312 163.406 128.904 165.465C134.127 168.461 150.273 184.39 154.428 189.6C157.343 185.988 166.835 176.846 170.499 173.276C176.148 167.774 183.905 159.311 189.559 154.397C183.9 149.684 178.636 143.045 173.148 138.276C150.265 118.39 163.038 81.4862 193.824 81.7613C206.67 81.876 213.331 88.3146 221.86 97.1941C225.629 101.118 230.21 105.398 234.115 109.526C245.275 99.0943 256.967 85.7899 268.072 75.8955L255.747 63.6768C248.117 56.0926 241.51 50.1917 239.791 38.7735C238.402 29.7816 240.712 20.6097 246.196 13.3487C252.628 4.79622 260.799 1.5276 270.98 0.0550616ZM199.304 154.334C210.602 167.072 225.964 175.311 224.879 194.812C223.892 212.549 208.54 225.879 190.936 224.819C174.025 223.801 165.808 209.391 154.32 199.256C147.467 206.858 139.103 214.593 131.886 222.008C129.688 224.266 121.692 232.474 119.554 234.16C130.582 245.52 141.982 256.535 153.081 267.812C157.893 264.13 166.724 254.461 171.076 249.998C191.65 228.903 226.693 241.34 228.896 270.711C229.661 281.725 224.99 292.591 216.047 299.442C208.892 304.952 199.822 307.352 190.878 306.103C175.941 304.025 169.407 293.471 159.257 283.875C157.278 282.005 155.226 279.644 153.051 277.993C146.205 284.958 139.32 291.886 132.396 298.773C128.564 302.582 123 307.813 119.6 311.857C121.711 313.368 130.712 322.639 132.911 324.941C139.669 332.009 148.012 339.551 154.427 346.711C158.034 342.973 161.674 339.265 165.345 335.59C173.475 327.439 180.268 321.06 192.728 320.968C210.489 320.837 224.91 335.242 224.923 352.988C224.937 370.574 210.239 379.864 199.279 391.417L223.653 415.687C226.528 418.557 231.685 423.362 234.158 426.241C237.631 423.017 241.036 419.607 244.347 416.214C252.068 408.304 260.178 400.68 267.831 392.71C255.161 378.032 237.682 369.37 239.551 347.445C240.289 338.798 244.394 330.636 250.985 325.027C257.831 319.125 266.772 316.246 275.776 317.043C284.763 317.807 293.074 322.125 298.867 329.036C304.52 335.938 307.202 344.799 306.325 353.675C304.927 369.01 294.148 375.865 284.358 386.109C282.372 388.184 279.627 390.557 278.048 392.906C289.095 403.121 300.809 415.634 311.844 426.321C313.322 424.216 319.447 418.408 321.535 416.339L337.405 400.522C340.197 397.753 343.956 394.242 346.591 391.405C342.805 387.596 338.993 383.813 335.154 380.06C330.515 375.439 326.971 372.311 324.107 366.361C313.958 345.266 329.697 320.802 353.067 320.977C371.325 321.114 379.556 335.86 391.51 346.652C400.767 336.598 411.014 327.15 420.551 317.349C422.394 315.452 424.303 313.409 426.254 311.64C418.541 303.739 410.756 295.907 402.899 288.142C400.214 285.445 395.168 280.679 392.828 277.931L392.524 278.184C377.983 290.405 369.357 308.39 347.316 306.311C328.526 304.539 315.293 288.092 317.056 269.545C317.94 260.75 322.245 252.654 329.043 247.005C336.1 241.262 345.172 238.604 354.212 239.63C369.184 241.217 376.401 252.282 386.425 261.85C388.525 263.854 390.562 266.149 392.896 267.913C398.614 261.463 405.424 255.457 411.371 249.184C416.174 244.119 421.654 239.39 426.195 234.09C415.769 224.015 405.715 213.449 395.385 203.268C394.088 201.991 392.825 200.567 391.507 199.33C379.015 210.63 370.299 225.881 351.131 224.851C333.78 223.918 320.131 208.936 320.985 191.536C321.701 176.948 331.327 169.651 340.822 160.217C342.662 158.364 345.006 156.24 346.537 154.244C336.266 144.913 326.688 134.169 316.619 124.573C315.017 123.047 313.146 121.234 311.656 119.614C301.064 129.869 288.34 142.327 278.152 153.012C279.66 155.471 283.547 158.977 285.679 161.106C295.465 170.867 305.837 178.606 306.402 193.714C306.872 206.18 301.632 216.812 291.091 223.646C283.502 228.492 274.296 230.112 265.511 228.148C257.288 226.373 249.211 220.771 244.717 213.645C239.874 206.129 238.252 196.983 240.214 188.26C243.424 174.591 253.059 168.75 262.189 158.987C264.005 157.045 266.207 155.133 267.825 153.005L244.325 129.575C241.741 126.986 236.141 121.8 234.045 119.394C232.848 121.356 225.424 128.483 223.262 130.641C215.358 138.621 207.372 146.52 199.304 154.334ZM158.295 272.917C164.003 279.284 170.881 285.282 176.782 291.541C179.814 294.759 184.255 297.334 188.546 298.431C193.667 299.567 197.264 299.945 202.386 298.503C233.472 289.748 225.052 243.611 193.021 246.555C180.088 248.74 177.82 253.509 168.543 262.59C165.562 265.507 160.93 269.917 158.295 272.917ZM361.441 297.096C369.098 292.466 372.744 287.797 378.988 281.571C381.757 278.811 385.105 275.662 387.665 272.828C383.69 268.942 379.744 265.027 375.821 261.084C367.57 252.671 362.342 246.324 349.526 246.446C348.871 246.447 348.217 246.479 347.569 246.542C345.354 246.971 342.484 247.416 340.435 248.341C308.026 262.947 327.776 310.653 361.441 297.096ZM273.338 222.236C281.156 221.653 288.087 218.527 293.202 212.521C297.707 207.194 299.899 200.287 299.286 193.337C298.18 181.058 290.594 175.887 282.426 167.782C280.835 166.204 274.239 158.872 272.749 158.381L260.822 170.312C255.386 175.695 250.148 179.915 247.779 187.439C242.222 205.091 255.167 221.775 273.338 222.236ZM44.6675 297.039C52.0002 292.954 56.2557 287.342 62.2559 281.529C64.8742 278.993 68.4809 275.498 70.759 272.858C66.7464 268.757 62.7026 264.688 58.6272 260.65C49.8012 251.83 44.6291 245.685 31.0153 246.545C22.5321 248.005 17.1412 250.401 12.0271 257.652C-1.54454 276.896 14.8887 303.216 38.2126 298.978C40.2805 298.601 42.7837 297.982 44.6675 297.039ZM275 385.666C278.512 382.011 282.084 378.416 285.714 374.877C293.713 367.015 299.441 361.811 299.378 349.732C299.295 334.305 284.849 321.956 269.713 323.909C266.082 324.715 262.575 325.652 259.438 327.579C249.408 333.737 244.639 344.817 247.175 356.331C249.308 366.016 256.607 371.062 263.133 377.863C266.008 380.813 270.04 384.964 273.047 387.646L275 385.666ZM274.117 69.6164C277.873 66.1506 281.409 62.3051 285.033 58.7459C292.803 51.1192 298.926 46.0536 299.36 34.3402C299.646 27.3643 297.094 20.5699 292.289 15.5043C286.309 9.12167 279.36 6.78023 270.775 7.20605C255.976 8.54567 245.566 20.9413 246.538 35.7294C247.4 48.8533 257.958 55.1901 266.169 63.9522C267.774 65.6647 271.081 69.7103 273.139 70.4332C273.656 70.0921 273.689 70.0639 274.117 69.6164ZM475.108 272.986L487.484 285.392C492.98 290.908 497.384 296.367 505.228 298.413C513.126 300.102 519.451 299.769 526.48 295.342C546.428 282.781 540.778 251.175 517.464 246.977C514.904 246.501 512.29 246.354 509.691 246.539C501.136 248.132 497.443 250.13 491.338 256.569C486.107 262.085 480.235 267.351 475.108 272.986ZM194.104 396.466C190.737 400.349 184.301 406.564 180.406 410.365C172.276 418.301 168.191 422.592 168.703 434.734C168.975 441.192 172.234 447.175 177.113 451.389C182.109 455.733 188.659 457.854 195.253 457.262C198.086 457.024 199.833 456.557 202.386 455.403C204.083 454.684 206.953 453.322 208.246 452.022C214.63 445.608 223.692 437.954 229.271 430.996C225.873 428.153 221.976 424.017 218.794 420.829L203.476 405.538C202.22 404.272 195.176 396.954 194.104 396.466ZM396.292 351.659C403.681 358.118 415.971 373.275 424.193 376.091C431.767 377.922 438.541 378.003 445.404 373.813C451.081 370.331 455.146 364.743 456.71 358.27C460.168 343.898 450.376 335.141 441.036 326.22C437.765 323.094 434.539 319.479 431.122 316.535C428.062 320.216 422.763 325.232 419.275 328.724L396.292 351.659ZM427.839 225.759L431.295 229.268L443.135 217.494C450.486 210.169 457.251 204.642 457.305 193.234C457.326 186.534 454.629 180.113 449.823 175.443C444.453 170.158 437.688 167.998 430.23 168.674C415.876 170.159 406.902 184.996 396.307 194.244C406.893 204.674 417.405 215.179 427.839 225.759ZM386.393 351.469L375.789 340.829C367.031 332.054 362.598 327.145 349.371 328.346C335.157 330.16 326.444 343.015 328.422 356.744C329.742 365.927 335.79 370.797 341.978 376.884C345.178 380.034 348.348 383.212 351.488 386.421C354.037 384.024 356.415 381.461 358.925 379.008C365.107 372.754 371.325 366.533 377.579 360.351C379.764 358.171 384.537 353.675 386.393 351.469ZM351.542 149.601C355.642 145.211 359.951 141.08 364.159 136.845C368.598 132.377 374.225 127.652 376.098 121.413C381.424 103.665 368.893 87.7457 350.551 88.6089C350.287 88.6217 350.022 88.6369 349.757 88.6547C337.583 90.5362 325.082 105.694 316.587 114.673C327.256 124.508 337.61 136.316 348.086 145.931L351.542 149.601ZM273.454 538.713C281.081 538.377 287.139 535.894 292.426 530.169C297.219 525.019 299.717 518.144 299.351 511.117C298.777 499.193 292.111 494.126 284.245 486.281C280.772 482.817 276.936 478.749 273.356 475.484C273.207 475.347 273.053 475.214 272.898 475.083L260.714 487.254C252.928 495.024 246.571 500.216 246.452 512.351C246.41 519.28 249.149 525.935 254.055 530.826C259.56 536.328 265.758 538.748 273.454 538.713ZM159.448 351.49C168.721 361.005 178.328 370.253 187.664 379.715C188.783 380.848 189.961 382.094 191.152 383.135C192.114 384.149 193.341 385.514 194.323 386.46L204.926 375.817C212.357 368.469 217.89 363.735 217.712 352.617C217.461 336.943 205.054 326.746 189.856 328.34C180.437 329.425 176.225 334.674 169.852 341.1C166.417 344.597 162.949 348.058 159.448 351.49ZM190.246 88.6589C175.897 90.7488 166.698 103.164 168.877 117.528C170.228 126.431 175.605 130.603 181.564 136.693C185.615 140.832 190.484 145.23 194.268 149.575C196.434 147.396 198.794 145.108 200.884 142.88L218.643 125.148C221.682 122.105 226.206 117.299 229.36 114.693C225.483 110.719 221.584 106.766 217.663 102.834C208.471 93.5928 204.136 88.0205 190.246 88.6589ZM194.176 159.518C183.005 171.368 170.727 182.638 159.443 194.246C162.501 197.429 165.605 200.567 168.755 203.659C173.864 208.768 177.625 213.442 184.385 216.419C191.733 218.426 198.24 218.349 205.129 214.741C216.621 208.722 221.528 192.569 214.808 181.196C213.838 179.576 212.719 178.05 211.465 176.639C209.838 174.792 195.139 159.997 194.176 159.518ZM344.824 455.974C350.804 458.169 357.016 457.782 362.791 455.151C368.839 452.418 373.55 447.386 375.878 441.171C377.924 435.569 377.867 427.737 375.292 422.307C372.095 415.571 357.432 402.282 351.488 396.299C349.017 399.026 346.281 401.792 343.638 404.364C334.565 413.198 325.79 422.527 316.604 431.225C320.741 435.492 324.916 439.72 329.126 443.916C334.877 449.682 337.25 452.775 344.824 455.974ZM114.803 306.873C116.877 303.977 121.263 299.841 123.929 297.176L139.088 282.058C141.857 279.302 145.602 275.766 148.08 272.897C145.602 270.176 114.826 239.337 114.424 239.185C111.395 242.718 107.612 246.107 104.351 249.479C96.77 257.318 88.4123 265.047 80.969 272.959C91.6738 284.158 103.745 295.889 114.803 306.873ZM361.914 216.3C369.981 211.799 372.75 207.966 379.259 201.509C381.335 199.451 384.638 196.367 386.405 194.211C377.837 185.979 369.547 177.341 361.09 169.004C359.505 167.443 352.582 160.249 351.402 159.514C346.026 165.021 331.336 178.14 329.409 184.719C323.268 205.675 340.498 222.721 361.914 216.3ZM122.361 375.85C130.823 371.99 142.394 358.463 149.514 351.522C146.202 348.237 115.276 317.019 114.408 316.82C110.505 320.635 106.625 324.468 102.768 328.328C95.3114 335.753 88.7263 341.18 88.5664 352.623C88.5113 359.171 91.0862 365.469 95.7138 370.105C102.879 377.336 112.856 378.844 122.361 375.85ZM306.803 431.144C303.214 428.105 299.512 424.195 296.155 420.823L281.777 406.433C279.244 403.891 275.577 399.99 272.94 397.825C271.084 399.368 269.636 400.974 267.914 402.6C258.213 411.768 249.043 422.265 239.147 431.156C246.43 438.543 253.758 445.888 261.13 453.188C264.829 456.872 269.231 461.535 273.035 464.949C276.053 461.434 281.982 455.864 285.471 452.391L306.803 431.144ZM272.862 80.9281C270.674 83.3629 267.986 85.9487 265.621 88.2423C256.693 96.9006 248.068 106.142 239.035 114.66C244.048 119.067 270.516 146.821 273.139 147.894C276.618 144.756 280.246 140.87 283.606 137.54C291.364 129.852 298.861 122.043 306.842 114.579C295.557 104.435 284.233 91.4184 272.862 80.9281ZM111.043 168.667C103.528 169.463 98.6589 172.019 93.827 177.996C89.8058 183.036 87.9529 189.467 88.6776 195.874C89.9196 207.54 106.124 221.402 114.759 229.3C116.984 226.779 119.004 224.768 121.389 222.416L140.897 202.887C143.246 200.524 147.468 196.571 149.501 194.147C144.899 190.081 139.765 184.748 135.483 180.315C127.968 172.534 122.54 167.728 111.043 168.667ZM431.021 239.185C428.244 242.504 424.521 246.027 421.401 249.139L406.536 263.977C404.187 266.313 399.658 270.559 397.859 272.965C401.005 276.733 430.697 306.359 431.642 306.457C442.089 295.166 454.629 284.113 464.903 272.873C461.498 269.391 432.124 239.667 431.021 239.185Z"></path><path class="kc" d="M269.603 241.136C287.148 239.294 302.869 252.009 304.734 269.551C306.601 287.09 293.907 302.829 276.368 304.717C258.796 306.612 243.022 293.887 241.153 276.313C239.283 258.739 252.028 242.982 269.603 241.136ZM276.657 297.694C290.335 295.639 299.756 282.885 297.698 269.206C295.64 255.53 282.886 246.11 269.208 248.168C255.534 250.227 246.116 262.98 248.173 276.655C250.229 290.331 262.982 299.749 276.657 297.694Z"></path><path class="kc" d="M271.682 266.735C273.918 266.28 276.225 267.065 277.718 268.79C279.211 270.515 279.66 272.911 278.89 275.058C278.12 277.208 276.252 278.772 274.004 279.156C270.602 279.736 267.364 277.479 266.731 274.089C266.097 270.696 268.301 267.425 271.682 266.735Z"></path><path d="M191.917 266.694C193.658 266.361 195.459 266.771 196.883 267.827C198.498 269.025 199.45 270.916 199.448 272.926C199.446 274.937 198.492 276.828 196.874 278.02C196.032 278.642 195.05 279.046 194.014 279.195C190.604 279.688 187.426 277.366 186.856 273.97C186.286 270.571 188.534 267.342 191.917 266.694Z"></path><path d="M351.372 266.735C353.596 266.239 355.919 266.976 357.447 268.665C358.979 270.354 359.484 272.736 358.77 274.901C358.06 277.066 356.237 278.683 354.004 279.132C352.27 279.48 350.471 279.091 349.041 278.056C347.019 276.596 346.043 274.083 346.546 271.642C347.048 269.197 348.94 267.279 351.372 266.735Z"></path><path d="M271.476 186.937C274.063 186.327 276.758 187.396 278.221 189.615C279.687 191.834 279.609 194.731 278.03 196.871C277.141 198.078 275.851 198.93 274.391 199.275C271.922 199.859 269.347 198.917 267.837 196.881C266.567 195.168 266.246 192.931 266.977 190.929C267.709 188.926 269.401 187.426 271.476 186.937Z"></path><path d="M32.3468 266.708C34.2648 266.34 36.2455 266.878 37.7154 268.163C39.5094 269.733 40.2697 272.18 39.6833 274.49C39.0966 276.801 37.2622 278.588 34.9362 279.111C33.3917 279.459 31.7726 279.219 30.3978 278.431C28.0963 277.116 26.8571 274.505 27.2919 271.891C27.7266 269.278 29.7434 267.208 32.3468 266.708Z"></path><path d="M271.408 346.592C273.629 346.045 275.973 346.735 277.54 348.397C279.11 350.062 279.66 352.441 278.982 354.627C278.304 356.812 276.502 358.46 274.266 358.945C271.682 359.501 269.02 358.394 267.593 356.17C266.487 354.448 266.282 352.301 267.04 350.401C267.795 348.501 269.422 347.083 271.408 346.592Z"></path><path d="M270.92 27.538C273.635 26.6245 276.624 27.6462 278.215 30.0299C279.719 32.2911 279.618 35.2614 277.959 37.4137C277.168 38.4402 276.083 39.1994 274.845 39.5892C272.303 40.3906 269.532 39.5152 267.908 37.3989C266.665 35.7753 266.281 33.6509 266.879 31.6945C267.477 29.7382 268.981 28.1904 270.92 27.538Z"></path><path d="M511.038 266.717C513.289 266.248 515.618 267.036 517.125 268.775C518.63 270.518 519.073 272.935 518.285 275.097C517.497 277.259 515.6 278.823 513.328 279.186C511.606 279.462 509.846 279.013 508.46 277.949C506.498 276.438 505.594 273.922 506.147 271.508C506.7 269.09 508.612 267.22 511.038 266.717Z"></path><path d="M272.196 506.026C275.613 505.622 278.729 508.022 279.211 511.43C279.696 514.837 277.37 518.007 273.974 518.572C271.705 518.95 269.41 518.067 267.977 516.268C266.543 514.469 266.198 512.033 267.076 509.907C267.95 507.781 269.909 506.294 272.196 506.026Z"></path><path d="M431.22 266.774C433.257 266.34 435.377 266.943 436.885 268.383C438.116 269.56 438.818 271.184 438.83 272.888C438.844 274.589 438.166 276.227 436.956 277.422C436.135 278.231 435.107 278.802 433.983 279.07C431.776 279.593 429.457 278.888 427.913 277.226C426.367 275.564 425.838 273.2 426.522 271.035C427.206 268.873 429.002 267.244 431.22 266.774Z"></path><path d="M272.175 107.079C274.147 106.841 276.118 107.547 277.489 108.985C279.101 110.671 279.648 113.109 278.916 115.323C278.182 117.536 276.285 119.164 273.986 119.554C271.268 120.016 268.565 118.658 267.313 116.201C266.061 113.745 266.552 110.76 268.521 108.832C269.514 107.861 270.798 107.246 272.175 107.079Z"></path><path d="M271.01 426.506C273.772 425.622 276.778 426.732 278.304 429.2C279.826 431.668 279.472 434.856 277.444 436.928C276.659 437.731 275.675 438.311 274.59 438.605C271.28 439.506 267.857 437.597 266.882 434.308C265.91 431.017 267.741 427.552 271.01 426.506Z"></path><path d="M111.858 266.777C114.075 266.248 116.405 266.952 117.955 268.62C119.506 270.292 120.037 272.668 119.345 274.838C118.653 277.009 116.844 278.639 114.613 279.103C112.585 279.525 110.478 278.924 108.977 277.497C107.8 276.379 107.099 274.85 107.02 273.23C106.934 271.469 107.587 269.753 108.821 268.496C109.652 267.648 110.705 267.053 111.858 266.777Z"></path><path d="M111.846 186.929C115.254 186.104 118.686 188.199 119.509 191.608C120.331 195.017 118.233 198.447 114.824 199.267C112.983 199.71 111.041 199.307 109.527 198.17C108.014 197.032 107.087 195.278 107.001 193.387C106.862 190.352 108.894 187.645 111.846 186.929Z"></path><path d="M111.752 346.619C113.98 346.045 116.344 346.723 117.931 348.388C119.518 350.053 120.079 352.447 119.398 354.645C118.717 356.842 116.899 358.502 114.648 358.977C112.777 359.373 110.827 358.903 109.341 357.699C107.854 356.497 106.99 354.686 106.987 352.774C106.983 349.875 108.944 347.342 111.752 346.619Z"></path><path d="M192.281 107.067C195.733 106.617 198.9 109.037 199.372 112.485C199.843 115.933 197.443 119.116 193.998 119.609C190.522 120.107 187.305 117.681 186.829 114.202C186.353 110.722 188.8 107.521 192.281 107.067Z"></path><path d="M191.268 426.467C194.628 425.45 198.175 427.356 199.178 430.722C200.182 434.085 198.26 437.624 194.891 438.614C191.543 439.598 188.029 437.689 187.032 434.344C186.034 431.002 187.928 427.478 191.268 426.467Z"></path><path d="M350.753 426.52C352.957 425.783 355.389 426.312 357.087 427.897C358.785 429.485 359.481 431.873 358.898 434.121C358.315 436.372 356.549 438.121 354.295 438.683C350.991 439.506 347.628 437.573 346.677 434.305C345.725 431.034 347.524 427.6 350.753 426.52Z"></path><path d="M351.753 107.081C355.172 106.523 358.405 108.813 359.014 112.223C359.624 115.634 357.382 118.901 353.983 119.563C351.735 119.999 349.43 119.192 347.946 117.45C346.463 115.708 346.031 113.301 346.819 111.153C347.61 109.005 349.493 107.449 351.753 107.081Z"></path><path d="M430.979 346.628C434.336 345.777 437.753 347.785 438.648 351.133C439.54 354.478 437.581 357.922 434.244 358.858C432.05 359.477 429.692 358.864 428.071 357.259C426.453 355.65 425.823 353.295 426.427 351.094C427.027 348.894 428.767 347.19 430.979 346.628Z"></path><path d="M431.027 186.939C434.426 186.104 437.857 188.181 438.696 191.579C439.531 194.978 437.456 198.411 434.057 199.249C430.658 200.088 427.221 198.01 426.385 194.61C425.546 191.21 427.625 187.775 431.027 186.939Z"></path><path d="M191.759 346.536C195.202 345.795 198.592 347.987 199.33 351.43C200.068 354.874 197.875 358.261 194.433 359.001C190.991 359.736 187.603 357.544 186.865 354.104C186.127 350.663 188.318 347.273 191.759 346.536Z"></path><path d="M351.259 186.9C354.682 186.061 358.134 188.158 358.967 191.581C359.799 195.003 357.697 198.451 354.271 199.278C350.858 200.103 347.417 198.007 346.587 194.593C345.758 191.179 347.848 187.737 351.259 186.9Z"></path><path d="M351.292 346.592C354.702 345.771 358.134 347.871 358.958 351.284C359.781 354.695 357.688 358.13 354.277 358.956C350.861 359.786 347.42 357.687 346.596 354.267C345.77 350.85 347.872 347.413 351.292 346.592Z"></path><path d="M191.736 186.863C195.155 186.123 198.531 188.281 199.294 191.695C200.057 195.11 197.922 198.5 194.513 199.286C191.071 200.079 187.641 197.919 186.871 194.472C186.101 191.025 188.284 187.61 191.736 186.863Z"></path></svg></div>
+          <div class="kfish n"><div class="fish-inner" style="--fc:#3CAEBB"><svg class="fish-svg" viewBox="0 0 204 145" xmlns="http://www.w3.org/2000/svg"><path class="fb" d="M202.763 0C203.656 3.02 203.067 31.8981 203.04 36.9481L202.213 144.554L166.797 110.286C157.534 101.242 147.497 91.0481 137.866 82.5356C130.582 89.5168 123.342 96.5419 116.145 103.611C102.562 117.117 92.2291 129.298 72.1122 132.879C53.8516 136.129 38.889 131.617 24.004 121.236C22.6115 120.086 21.2466 118.904 19.9103 117.686C7.27031 106.217 0.625311 90.8356 0.0415605 73.8793C-0.561564 57.5544 5.42031 41.6669 16.6428 29.795C27.5847 18.4406 42.5478 11.8369 58.3109 11.4062C84.6597 10.8475 96.8778 22.85 114.21 39.7731C122.093 47.5106 130.022 55.1981 137.997 62.8481C159.43 41.7356 181.019 20.7881 202.763 0Z"></path><path class="fe" d="M58.3656 63.0107C62.0388 62.0482 65.9463 63.142 68.5825 65.8732C71.2194 68.6107 72.1738 72.5545 71.0781 76.1857C69.9831 79.8232 67.0088 82.5857 63.3013 83.4107C57.7181 84.6482 52.1713 81.1857 50.8263 75.6295C49.4819 70.0732 52.8338 64.4607 58.3656 63.0107Z"></path></svg></div></div>
+          <div class="kfish e"><div class="fish-inner" style="--fc:#3CAEBB"><svg class="fish-svg" viewBox="0 0 204 145" xmlns="http://www.w3.org/2000/svg"><path class="fb" d="M202.763 0C203.656 3.02 203.067 31.8981 203.04 36.9481L202.213 144.554L166.797 110.286C157.534 101.242 147.497 91.0481 137.866 82.5356C130.582 89.5168 123.342 96.5419 116.145 103.611C102.562 117.117 92.2291 129.298 72.1122 132.879C53.8516 136.129 38.889 131.617 24.004 121.236C22.6115 120.086 21.2466 118.904 19.9103 117.686C7.27031 106.217 0.625311 90.8356 0.0415605 73.8793C-0.561564 57.5544 5.42031 41.6669 16.6428 29.795C27.5847 18.4406 42.5478 11.8369 58.3109 11.4062C84.6597 10.8475 96.8778 22.85 114.21 39.7731C122.093 47.5106 130.022 55.1981 137.997 62.8481C159.43 41.7356 181.019 20.7881 202.763 0Z"></path><path class="fe" d="M58.3656 63.0107C62.0388 62.0482 65.9463 63.142 68.5825 65.8732C71.2194 68.6107 72.1738 72.5545 71.0781 76.1857C69.9831 79.8232 67.0088 82.5857 63.3013 83.4107C57.7181 84.6482 52.1713 81.1857 50.8263 75.6295C49.4819 70.0732 52.8338 64.4607 58.3656 63.0107Z"></path></svg></div></div>
+          <div class="kfish s"><div class="fish-inner" style="--fc:#3CAEBB"><svg class="fish-svg" viewBox="0 0 204 145" xmlns="http://www.w3.org/2000/svg"><path class="fb" d="M202.763 0C203.656 3.02 203.067 31.8981 203.04 36.9481L202.213 144.554L166.797 110.286C157.534 101.242 147.497 91.0481 137.866 82.5356C130.582 89.5168 123.342 96.5419 116.145 103.611C102.562 117.117 92.2291 129.298 72.1122 132.879C53.8516 136.129 38.889 131.617 24.004 121.236C22.6115 120.086 21.2466 118.904 19.9103 117.686C7.27031 106.217 0.625311 90.8356 0.0415605 73.8793C-0.561564 57.5544 5.42031 41.6669 16.6428 29.795C27.5847 18.4406 42.5478 11.8369 58.3109 11.4062C84.6597 10.8475 96.8778 22.85 114.21 39.7731C122.093 47.5106 130.022 55.1981 137.997 62.8481C159.43 41.7356 181.019 20.7881 202.763 0Z"></path><path class="fe" d="M58.3656 63.0107C62.0388 62.0482 65.9463 63.142 68.5825 65.8732C71.2194 68.6107 72.1738 72.5545 71.0781 76.1857C69.9831 79.8232 67.0088 82.5857 63.3013 83.4107C57.7181 84.6482 52.1713 81.1857 50.8263 75.6295C49.4819 70.0732 52.8338 64.4607 58.3656 63.0107Z"></path></svg></div></div>
+          <div class="kfish w"><div class="fish-inner" style="--fc:#3CAEBB"><svg class="fish-svg" viewBox="0 0 204 145" xmlns="http://www.w3.org/2000/svg"><path class="fb" d="M202.763 0C203.656 3.02 203.067 31.8981 203.04 36.9481L202.213 144.554L166.797 110.286C157.534 101.242 147.497 91.0481 137.866 82.5356C130.582 89.5168 123.342 96.5419 116.145 103.611C102.562 117.117 92.2291 129.298 72.1122 132.879C53.8516 136.129 38.889 131.617 24.004 121.236C22.6115 120.086 21.2466 118.904 19.9103 117.686C7.27031 106.217 0.625311 90.8356 0.0415605 73.8793C-0.561564 57.5544 5.42031 41.6669 16.6428 29.795C27.5847 18.4406 42.5478 11.8369 58.3109 11.4062C84.6597 10.8475 96.8778 22.85 114.21 39.7731C122.093 47.5106 130.022 55.1981 137.997 62.8481C159.43 41.7356 181.019 20.7881 202.763 0Z"></path><path class="fe" d="M58.3656 63.0107C62.0388 62.0482 65.9463 63.142 68.5825 65.8732C71.2194 68.6107 72.1738 72.5545 71.0781 76.1857C69.9831 79.8232 67.0088 82.5857 63.3013 83.4107C57.7181 84.6482 52.1713 81.1857 50.8263 75.6295C49.4819 70.0732 52.8338 64.4607 58.3656 63.0107Z"></path></svg></div></div>
+        </div></div>
+      </div>
+    </header>
+
+    <section class="skills" aria-label="Skills"><div class="marquee"><div class="track">
+      <span class="chip"><span class="cdot"></span>Prototyping</span>
+      <span class="chip"><span class="cdot"></span>Design Thinking</span>
+      <span class="chip"><span class="cdot"></span>Micro Interactions</span>
+      <span class="chip"><span class="cdot"></span>User Research</span>
+      <span class="chip"><span class="cdot"></span>UI Design</span>
+      <span class="chip"><span class="cdot"></span>Wireframing</span>
+      <span class="chip"><span class="cdot"></span>Design Systems</span>
+      <span class="chip"><span class="cdot"></span>Figma</span>
+      <span class="chip"><span class="cdot"></span>Prototyping</span>
+      <span class="chip"><span class="cdot"></span>Design Thinking</span>
+      <span class="chip"><span class="cdot"></span>Micro Interactions</span>
+      <span class="chip"><span class="cdot"></span>User Research</span>
+      <span class="chip"><span class="cdot"></span>UI Design</span>
+      <span class="chip"><span class="cdot"></span>Wireframing</span>
+      <span class="chip"><span class="cdot"></span>Design Systems</span>
+      <span class="chip"><span class="cdot"></span>Figma</span>
+    </div></div></section>
+
+    <section class="section wrap" style="padding-top:20px;">
+      <div class="sec-head">
+        <div><p class="eyebrow">Selected projects</p><h2 class="sec-title">Some of my work.</h2></div>
+        <span class="textlink" data-view="work">View all work <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+      </div>
+      <div class="bento">
+        <div class="band"><a class="tile-big reveal" href="https://www.behance.net/gallery/248673775/Disanalyse-Design-for-Disassembly" target="_blank" rel="noopener"><img class="cover" src="assets/dis-analyse.jpg" alt="DISanalyse"><div class="scrim"></div><div class="tb-content"><span class="tag">UX / Research</span><h3 class="serif">DISanalyse</h3></div></a>
+          <div class="side"><div class="mini fish-mini reveal"><svg class="fish-svg" viewBox="0 0 204 145" xmlns="http://www.w3.org/2000/svg" style="--fc:#3CAEBB"><path class="fb" d="M202.763 0C203.656 3.02 203.067 31.8981 203.04 36.9481L202.213 144.554L166.797 110.286C157.534 101.242 147.497 91.0481 137.866 82.5356C130.582 89.5168 123.342 96.5419 116.145 103.611C102.562 117.117 92.2291 129.298 72.1122 132.879C53.8516 136.129 38.889 131.617 24.004 121.236C22.6115 120.086 21.2466 118.904 19.9103 117.686C7.27031 106.217 0.625311 90.8356 0.0415605 73.8793C-0.561564 57.5544 5.42031 41.6669 16.6428 29.795C27.5847 18.4406 42.5478 11.8369 58.3109 11.4062C84.6597 10.8475 96.8778 22.85 114.21 39.7731C122.093 47.5106 130.022 55.1981 137.997 62.8481C159.43 41.7356 181.019 20.7881 202.763 0Z"></path><path class="fe" d="M58.3656 63.0107C62.0388 62.0482 65.9463 63.142 68.5825 65.8732C71.2194 68.6107 72.1738 72.5545 71.0781 76.1857C69.9831 79.8232 67.0088 82.5857 63.3013 83.4107C57.7181 84.6482 52.1713 81.1857 50.8263 75.6295C49.4819 70.0732 52.8338 64.4607 58.3656 63.0107Z"></path></svg></div>
+          <div class="mini kolam-mini reveal"><img class="km-img" src="assets/group-16-mtwuj406-8n3z.webp" alt="kolam pattern"></div></div>
+        </div>
+        <div class="band rev"><a class="tile-big reveal" href="https://www.behance.net/gallery/254971459/The-Flower-Within" target="_blank" rel="noopener"><img class="cover" src="assets/flower-within.jpg" alt="The Flower Within"><div class="scrim"></div><div class="tb-content"><span class="tag">Visual</span><h3 class="serif">The Flower Within</h3></div></a>
+          <div class="side"><div class="mini fish-mini reveal"><svg class="fish-svg" viewBox="0 0 204 145" xmlns="http://www.w3.org/2000/svg" style="--fc:#3CAEBB"><path class="fb" d="M202.763 0C203.656 3.02 203.067 31.8981 203.04 36.9481L202.213 144.554L166.797 110.286C157.534 101.242 147.497 91.0481 137.866 82.5356C130.582 89.5168 123.342 96.5419 116.145 103.611C102.562 117.117 92.2291 129.298 72.1122 132.879C53.8516 136.129 38.889 131.617 24.004 121.236C22.6115 120.086 21.2466 118.904 19.9103 117.686C7.27031 106.217 0.625311 90.8356 0.0415605 73.8793C-0.561564 57.5544 5.42031 41.6669 16.6428 29.795C27.5847 18.4406 42.5478 11.8369 58.3109 11.4062C84.6597 10.8475 96.8778 22.85 114.21 39.7731C122.093 47.5106 130.022 55.1981 137.997 62.8481C159.43 41.7356 181.019 20.7881 202.763 0Z"></path><path class="fe" d="M58.3656 63.0107C62.0388 62.0482 65.9463 63.142 68.5825 65.8732C71.2194 68.6107 72.1738 72.5545 71.0781 76.1857C69.9831 79.8232 67.0088 82.5857 63.3013 83.4107C57.7181 84.6482 52.1713 81.1857 50.8263 75.6295C49.4819 70.0732 52.8338 64.4607 58.3656 63.0107Z"></path></svg></div>
+          <div class="mini kolam-mini reveal"><img class="km-img" src="assets/group-16-mtwuj406-8n3z.webp" alt="kolam pattern"></div></div>
+        </div>
+        <div class="band"><a class="tile-big reveal" href="https://www.behance.net/gallery/254980515/Mudra-Bharatanatyam-Mudras-Learning-Platform" target="_blank" rel="noopener"><img class="cover" src="assets/mudra.jpg" alt="Mudra"><div class="scrim"></div><div class="tb-content"><span class="tag">Concept</span><h3 class="serif">Mudra</h3></div></a>
+          <div class="side"><div class="mini fish-mini reveal"><svg class="fish-svg" viewBox="0 0 204 145" xmlns="http://www.w3.org/2000/svg" style="--fc:#3CAEBB"><path class="fb" d="M202.763 0C203.656 3.02 203.067 31.8981 203.04 36.9481L202.213 144.554L166.797 110.286C157.534 101.242 147.497 91.0481 137.866 82.5356C130.582 89.5168 123.342 96.5419 116.145 103.611C102.562 117.117 92.2291 129.298 72.1122 132.879C53.8516 136.129 38.889 131.617 24.004 121.236C22.6115 120.086 21.2466 118.904 19.9103 117.686C7.27031 106.217 0.625311 90.8356 0.0415605 73.8793C-0.561564 57.5544 5.42031 41.6669 16.6428 29.795C27.5847 18.4406 42.5478 11.8369 58.3109 11.4062C84.6597 10.8475 96.8778 22.85 114.21 39.7731C122.093 47.5106 130.022 55.1981 137.997 62.8481C159.43 41.7356 181.019 20.7881 202.763 0Z"></path><path class="fe" d="M58.3656 63.0107C62.0388 62.0482 65.9463 63.142 68.5825 65.8732C71.2194 68.6107 72.1738 72.5545 71.0781 76.1857C69.9831 79.8232 67.0088 82.5857 63.3013 83.4107C57.7181 84.6482 52.1713 81.1857 50.8263 75.6295C49.4819 70.0732 52.8338 64.4607 58.3656 63.0107Z"></path></svg></div>
+          <div class="mini kolam-mini reveal"><img class="km-img" src="assets/group-16-mtwuj406-8n3z.webp" alt="kolam pattern"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section wrap" style="padding-top:20px;">
+      <div class="about-grid">
+        <div><p class="eyebrow">More about me</p><h2 class="sec-title">A designer from India,<br>drawn to art &amp; culture.</h2></div>
+        <div class="about-copy">
+          <p>I’m Vanikalyani from India, a multidisciplinary designer with more inclination towards Indian art and culture. I love designing things and keeping myself occupied with any new thing that excites my mind.</p>
+          <p>You’ll find me doing some random thing on a random day. Here are a few snippets from my life - enjoy.</p>
+        </div>
+      </div>
+      <div class="gallery"><div class="gtrack">
+        <div class="photo"><img class="photo-img" src="assets/ambm-01.jpg" alt=""></div><div class="photo"><img class="photo-img" src="assets/ambm-02.jpg" alt=""></div><div class="photo"><img class="photo-img" src="assets/ambm-03.jpg" alt=""></div><div class="photo"><img class="photo-img" src="assets/ambm-04.jpg" alt=""></div><div class="photo"><img class="photo-img" src="assets/ambm-05.jpg" alt=""></div><div class="photo"><img class="photo-img" src="assets/ambm-06.jpg" alt=""></div><div class="photo"><img class="photo-img" src="assets/ambm-07.jpg" alt=""></div><div class="photo"><img class="photo-img" src="assets/ambm-08.jpg" alt=""></div><div class="photo"><img class="photo-img" src="assets/ambm-09.jpg" alt=""></div><div class="photo"><img class="photo-img" src="assets/ambm-10.jpg" alt=""></div>
+        <div class="photo"><img class="photo-img" src="assets/ambm-01.jpg" alt=""></div><div class="photo"><img class="photo-img" src="assets/ambm-02.jpg" alt=""></div><div class="photo"><img class="photo-img" src="assets/ambm-03.jpg" alt=""></div><div class="photo"><img class="photo-img" src="assets/ambm-04.jpg" alt=""></div><div class="photo"><img class="photo-img" src="assets/ambm-05.jpg" alt=""></div><div class="photo"><img class="photo-img" src="assets/ambm-06.jpg" alt=""></div><div class="photo"><img class="photo-img" src="assets/ambm-07.jpg" alt=""></div><div class="photo"><img class="photo-img" src="assets/ambm-08.jpg" alt=""></div><div class="photo"><img class="photo-img" src="assets/ambm-09.jpg" alt=""></div><div class="photo"><img class="photo-img" src="assets/ambm-10.jpg" alt=""></div>
+      </div></div>
+    </section>
+  </div>
+
+  <!-- ===================== WORK ===================== -->
+  <div class="view" id="v-work">
+    <header class="wrap page-hero"><p class="eyebrow">Selected work</p><h1 class="page-title serif">A small pool<br>of my work</h1><p class="page-lede">A few projects where I turned complex ideas into calm, usable products - design that works as well as it looks.</p></header>
+    <section class="wrap works">
+      <article class="work"><div class="work-grid"><a class="collage reveal" href="https://www.behance.net/gallery/248673775/Disanalyse-Design-for-Disassembly" target="_blank" rel="noopener"><img src="assets/dis-analyse.jpg" alt="DISanalyse"></a>
+        <div class="wside"><div class="wtile appicon reveal"><svg class="fish-svg" viewBox="0 0 204 145" xmlns="http://www.w3.org/2000/svg" style="--fc:#C8EEF2"><path class="fb" d="M202.763 0C203.656 3.02 203.067 31.8981 203.04 36.9481L202.213 144.554L166.797 110.286C157.534 101.242 147.497 91.0481 137.866 82.5356C130.582 89.5168 123.342 96.5419 116.145 103.611C102.562 117.117 92.2291 129.298 72.1122 132.879C53.8516 136.129 38.889 131.617 24.004 121.236C22.6115 120.086 21.2466 118.904 19.9103 117.686C7.27031 106.217 0.625311 90.8356 0.0415605 73.8793C-0.561564 57.5544 5.42031 41.6669 16.6428 29.795C27.5847 18.4406 42.5478 11.8369 58.3109 11.4062C84.6597 10.8475 96.8778 22.85 114.21 39.7731C122.093 47.5106 130.022 55.1981 137.997 62.8481C159.43 41.7356 181.019 20.7881 202.763 0Z"></path><path class="fe" d="M58.3656 63.0107C62.0388 62.0482 65.9463 63.142 68.5825 65.8732C71.2194 68.6107 72.1738 72.5545 71.0781 76.1857C69.9831 79.8232 67.0088 82.5857 63.3013 83.4107C57.7181 84.6482 52.1713 81.1857 50.8263 75.6295C49.4819 70.0732 52.8338 64.4607 58.3656 63.0107Z"></path></svg></div><div class="wtile blank reveal"><img class="km-img" src="assets/group-16-mtwuj406-8n3z.webp" alt="kolam pattern"></div></div></div>
+        <div class="work-meta reveal"><h3 class="serif">DISanalyse <span class="cat">design for disassembly</span></h3><p> Designed and developed a web-based tool - Disanalyse for product disassembly analysis, integrating interactive 3D modelling, interface mapping, and DEI-driven insights to evaluate disassembly efficiency. </p><a class="proj-link" href="https://www.behance.net/gallery/248673775/Disanalyse-Design-for-Disassembly" target="_blank" rel="noopener">View on Behance <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"></path></svg></a></div></article>
+
+      <article class="work rev"><div class="work-grid"><a class="collage reveal" href="https://www.behance.net/gallery/247875027/Place-It-Match-It-Educational-Game-Design" target="_blank" rel="noopener"><img src="assets/place-it-match-it.jpg" alt="Place it, Match it"></a>
+        <div class="wside"><div class="wtile appicon reveal"><svg class="fish-svg" viewBox="0 0 204 145" xmlns="http://www.w3.org/2000/svg" style="--fc:#C8EEF2"><path class="fb" d="M202.763 0C203.656 3.02 203.067 31.8981 203.04 36.9481L202.213 144.554L166.797 110.286C157.534 101.242 147.497 91.0481 137.866 82.5356C130.582 89.5168 123.342 96.5419 116.145 103.611C102.562 117.117 92.2291 129.298 72.1122 132.879C53.8516 136.129 38.889 131.617 24.004 121.236C22.6115 120.086 21.2466 118.904 19.9103 117.686C7.27031 106.217 0.625311 90.8356 0.0415605 73.8793C-0.561564 57.5544 5.42031 41.6669 16.6428 29.795C27.5847 18.4406 42.5478 11.8369 58.3109 11.4062C84.6597 10.8475 96.8778 22.85 114.21 39.7731C122.093 47.5106 130.022 55.1981 137.997 62.8481C159.43 41.7356 181.019 20.7881 202.763 0Z"></path><path class="fe" d="M58.3656 63.0107C62.0388 62.0482 65.9463 63.142 68.5825 65.8732C71.2194 68.6107 72.1738 72.5545 71.0781 76.1857C69.9831 79.8232 67.0088 82.5857 63.3013 83.4107C57.7181 84.6482 52.1713 81.1857 50.8263 75.6295C49.4819 70.0732 52.8338 64.4607 58.3656 63.0107Z"></path></svg></div><div class="wtile blank reveal"><img class="km-img" src="assets/group-16-mtwuj406-8n3z.webp" alt="kolam pattern"></div></div></div>
+        <div class="work-meta reveal"><h3 class="serif">Place it · Match it <span class="cat">educational game design</span></h3><p>An interactive logic-based toy that blends mathematics, biology and play through
+a tactile modular dodecahedron puzzle, enabling children to explore classification through hands-on problem-
+solving.</p><a class="proj-link" href="https://www.behance.net/gallery/247875027/Place-It-Match-It-Educational-Game-Design" target="_blank" rel="noopener">View on Behance <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"></path></svg></a></div></article>
+
+      <article class="work"><div class="work-grid"><a class="collage reveal" href="https://www.behance.net/gallery/254980515/Mudra-Bharatanatyam-Mudras-Learning-Platform" target="_blank" rel="noopener"><img src="assets/mudra.jpg" alt="Mudra"></a>
+        <div class="wside"><div class="wtile appicon reveal"><svg class="fish-svg" viewBox="0 0 204 145" xmlns="http://www.w3.org/2000/svg" style="--fc:#C8EEF2"><path class="fb" d="M202.763 0C203.656 3.02 203.067 31.8981 203.04 36.9481L202.213 144.554L166.797 110.286C157.534 101.242 147.497 91.0481 137.866 82.5356C130.582 89.5168 123.342 96.5419 116.145 103.611C102.562 117.117 92.2291 129.298 72.1122 132.879C53.8516 136.129 38.889 131.617 24.004 121.236C22.6115 120.086 21.2466 118.904 19.9103 117.686C7.27031 106.217 0.625311 90.8356 0.0415605 73.8793C-0.561564 57.5544 5.42031 41.6669 16.6428 29.795C27.5847 18.4406 42.5478 11.8369 58.3109 11.4062C84.6597 10.8475 96.8778 22.85 114.21 39.7731C122.093 47.5106 130.022 55.1981 137.997 62.8481C159.43 41.7356 181.019 20.7881 202.763 0Z"></path><path class="fe" d="M58.3656 63.0107C62.0388 62.0482 65.9463 63.142 68.5825 65.8732C71.2194 68.6107 72.1738 72.5545 71.0781 76.1857C69.9831 79.8232 67.0088 82.5857 63.3013 83.4107C57.7181 84.6482 52.1713 81.1857 50.8263 75.6295C49.4819 70.0732 52.8338 64.4607 58.3656 63.0107Z"></path></svg></div><div class="wtile blank reveal"><img class="km-img" src="assets/group-16-mtwuj406-8n3z.webp" alt="kolam pattern"></div></div></div>
+        <div class="work-meta reveal"><h3 class="serif">Mudra <span class="cat">Bharatanatyam learning platform</span></h3><p>A visual-first learning platform for Bharatanatyam, combining intuitive navigation with hands-on
+practice to make traditional hand gestures easier to learn and remember.</p><a class="proj-link" href="https://www.behance.net/gallery/254980515/Mudra-Bharatanatyam-Mudras-Learning-Platform" target="_blank" rel="noopener">View on Behance <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"></path></svg></a></div></article>
+
+      <article class="work rev"><div class="work-grid"><a class="collage reveal" href="https://www.behance.net/gallery/254971459/The-Flower-Within" target="_blank" rel="noopener"><img src="assets/flower-within.jpg" alt="The Flower Within"></a>
+        <div class="wside"><div class="wtile appicon reveal"><svg class="fish-svg" viewBox="0 0 204 145" xmlns="http://www.w3.org/2000/svg" style="--fc:#C8EEF2"><path class="fb" d="M202.763 0C203.656 3.02 203.067 31.8981 203.04 36.9481L202.213 144.554L166.797 110.286C157.534 101.242 147.497 91.0481 137.866 82.5356C130.582 89.5168 123.342 96.5419 116.145 103.611C102.562 117.117 92.2291 129.298 72.1122 132.879C53.8516 136.129 38.889 131.617 24.004 121.236C22.6115 120.086 21.2466 118.904 19.9103 117.686C7.27031 106.217 0.625311 90.8356 0.0415605 73.8793C-0.561564 57.5544 5.42031 41.6669 16.6428 29.795C27.5847 18.4406 42.5478 11.8369 58.3109 11.4062C84.6597 10.8475 96.8778 22.85 114.21 39.7731C122.093 47.5106 130.022 55.1981 137.997 62.8481C159.43 41.7356 181.019 20.7881 202.763 0Z"></path><path class="fe" d="M58.3656 63.0107C62.0388 62.0482 65.9463 63.142 68.5825 65.8732C71.2194 68.6107 72.1738 72.5545 71.0781 76.1857C69.9831 79.8232 67.0088 82.5857 63.3013 83.4107C57.7181 84.6482 52.1713 81.1857 50.8263 75.6295C49.4819 70.0732 52.8338 64.4607 58.3656 63.0107Z"></path></svg></div><div class="wtile blank reveal"><img class="km-img" src="assets/group-16-mtwuj406-8n3z.webp" alt="kolam pattern"></div></div></div>
+        <div class="work-meta reveal"><h3 class="serif">The Flower Within <span class="cat">visual &amp; concept</span></h3><p>A personality quiz that connects user responses with personalized floral identities,
+creating an immersive and expressive self discovery experience</p><a class="proj-link" href="https://www.behance.net/gallery/254971459/The-Flower-Within" target="_blank" rel="noopener">View on Behance <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"></path></svg></a></div></article>
+    </section>
+  </div>
+
+  <!-- ===================== AQUARIUM ===================== -->
+  <div class="view" id="v-aquarium">
+    <header class="wrap page-hero"><p class="eyebrow">The aquarium</p><h1 class="page-title serif">Things I make<br>&amp; swim back to</h1><p class="page-lede">A collection of things I make, save and swim back to : snapshots, experiments and little waves.</p></header>
+    <section class="wrap garden">
+      <div class="g-item"><video class="g-vid" src="assets/ry.mp4" autoplay="" muted="" loop="" playsinline=""></video></div>
+      <div class="g-item"><img class="g-img" src="assets/ambm-04.jpg" alt=""></div>
+      <div class="g-item"><img class="g-img" src="assets/ambm-01.jpg" alt=""></div>
+      <div class="g-item"><img class="g-img" src="assets/aquarium-shot.jpg" alt=""></div>
+      <div class="g-item"><img class="g-img" src="assets/ambm-05.jpg" alt=""></div>
+      <div class="g-item"><img class="g-img" src="assets/ambm-02.jpg" alt=""></div>
+      <div class="g-item"><img class="g-img" src="assets/ambm-08.jpg" alt=""></div>
+      <div class="g-item"><img class="g-img" src="assets/ambm-03.jpg" alt=""></div>
+      
+      <div class="g-item"><img class="g-img" src="assets/ambm-06.jpg" alt=""></div>
+      <div class="g-item"><img class="g-img" src="assets/ambm-07.jpg" alt=""></div>
+      <div class="g-item"><img class="g-img" src="assets/ambm-09.jpg" alt=""></div>
+      <div class="g-item"><img class="g-img" src="assets/ambm-10.jpg" alt=""></div>
+    </section>
+  </div>
+
+  <!-- ===================== ABOUT / CV ===================== -->
+  <div class="view" id="v-about">
+    <header class="wrap page-hero"><p class="eyebrow">About &amp; CV</p><h1 class="page-title serif">A little more<br>about me</h1></header>
+    <section class="wrap intro">
+      <div>
+        <p>I’m Vanikalyani, a multidisciplinary designer from India, drawn to Indian art and culture and to the calm that good design can bring. I move between product, UI and research, and I care about the quiet details that make an experience feel effortless.</p>
+        <p>I love making things and keeping myself occupied with anything new that excites my mind. Design, for me, is less about decoration and more about clarity: giving people a little more ease in their day.</p>
+        <a class="btn btn-primary" href="#">Download CV (PDF)<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"></path></svg></a>
+      </div>
+      <div class="portrait"><span>[ Portrait / photo ]</span></div>
+    </section>
+    <section class="wrap block2">
+      <h2 class="serif">Experience</h2>
+      <div class="cv-row reveal"><div class="when">[ 20XX – Present ]</div><div><h4>[ Role / Title ]</h4><div class="org">[ Company ] · [ Location ]</div><p>[ One or two lines on what you owned and the impact you made. ]</p></div></div>
+      <div class="cv-row reveal"><div class="when">[ 20XX – 20XX ]</div><div><h4>[ Role / Title ]</h4><div class="org">[ Company ] · [ Location ]</div><p>[ One or two lines on what you owned and the impact you made. ]</p></div></div>
+      <div class="cv-row reveal"><div class="when">[ 20XX – 20XX ]</div><div><h4>[ Role / Title ]</h4><div class="org">[ Company ] · [ Location ]</div><p>[ One or two lines on what you owned and the impact you made. ]</p></div></div>
+    </section>
+    <section class="wrap block2">
+      <h2 class="serif">Education</h2>
+      <div class="cv-row reveal"><div class="when">[ 20XX – 20XX ]</div><div><h4>[ Degree / Programme ]</h4><div class="org">[ Institution ] · [ Location ]</div></div></div>
+    </section>
+    <section class="wrap block2">
+      <h2 class="serif">What I do</h2>
+      <div class="skill-pills">
+        <span class="skill-pill">Product Design</span><span class="skill-pill">UI Design</span><span class="skill-pill">UX Research</span><span class="skill-pill">Prototyping</span><span class="skill-pill">Design Thinking</span><span class="skill-pill">Micro Interactions</span><span class="skill-pill">Wireframing</span><span class="skill-pill">Design Systems</span><span class="skill-pill">Figma</span>
+      </div>
+    </section>
+  </div>
+
+  <!-- ===================== HOME FOOTER (contact + fish game) ===================== -->
+  <footer id="home-footer">
+    <div class="foot-contact">
+      <div>
+        <p class="eyebrow">Contact</p>
+        <p class="foot-lead serif">Let’s make something that flows.</p>
+        <a class="foot-email" href="mailto:vanikalyanirapellyyy@gmail.com">vanikalyanirapellyyy@gmail.com</a>
+        <p class="foot-tag">Cause you need more than one Y for every design decision.</p>
+      </div>
+      <div class="socials" style="align-self: auto; z-index: auto; align-items: stretch; justify-content: flex-end">
+        <a href="https://www.linkedin.com/in/vani-kalyani-r/" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="2.5" width="19" height="19" rx="3"></rect><circle cx="7" cy="8" r="1.15" fill="currentColor" stroke="none"></circle><path d="M7 11v6"></path><path d="M11 17v-6M11 13.4c0-2 6-2.2 6 .4V17"></path></svg></a>
+        <a href="https://www.behance.net/vanikalyanir03" target="_blank" rel="noopener" aria-label="Behance" title="Behance"><span class="beh">Bē</span></a>
+        <a href="https://www.instagram.com/rvkchan?stkn=dm5nb3NoMWhpbnc5&utm_source=qr" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.2" cy="6.8" r="1.15" fill="currentColor" stroke="none"></circle></svg></a>
+        <a href="https://dribbble.com/43-vani-kalyani-rapelly" target="_blank" rel="noopener" aria-label="Dribbble" title="Dribbble"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.3"></circle><path d="M4.5 8.6C10.3 9.2 16.2 8.2 19.2 5.4"></path><path d="M2.9 13.9C9.6 12.2 15.8 13.3 20.6 16.7"></path><path d="M8.4 3.3C12.8 8 15.4 14.7 15.9 20.5"></path></svg></a>
+    
+      </div>
+    </div>
+    <div class="aquarium-band">
+      <p class="aq-hint">Tap a fish — it darts off to the left and drifts back.</p>
+      <div class="foot-fishes">
+        <div class="swimfish sf1" style="--fc:#C8EEF2"><svg class="fish-svg" viewBox="0 0 204 145" xmlns="http://www.w3.org/2000/svg"><path class="fb" d="M202.763 0C203.656 3.02 203.067 31.8981 203.04 36.9481L202.213 144.554L166.797 110.286C157.534 101.242 147.497 91.0481 137.866 82.5356C130.582 89.5168 123.342 96.5419 116.145 103.611C102.562 117.117 92.2291 129.298 72.1122 132.879C53.8516 136.129 38.889 131.617 24.004 121.236C22.6115 120.086 21.2466 118.904 19.9103 117.686C7.27031 106.217 0.625311 90.8356 0.0415605 73.8793C-0.561564 57.5544 5.42031 41.6669 16.6428 29.795C27.5847 18.4406 42.5478 11.8369 58.3109 11.4062C84.6597 10.8475 96.8778 22.85 114.21 39.7731C122.093 47.5106 130.022 55.1981 137.997 62.8481C159.43 41.7356 181.019 20.7881 202.763 0Z"></path><path class="fe" d="M58.3656 63.0107C62.0388 62.0482 65.9463 63.142 68.5825 65.8732C71.2194 68.6107 72.1738 72.5545 71.0781 76.1857C69.9831 79.8232 67.0088 82.5857 63.3013 83.4107C57.7181 84.6482 52.1713 81.1857 50.8263 75.6295C49.4819 70.0732 52.8338 64.4607 58.3656 63.0107Z"></path></svg></div>
+        <div class="swimfish sf2" style="--fc:#9fd0e0"><svg class="fish-svg" viewBox="0 0 204 145" xmlns="http://www.w3.org/2000/svg"><path class="fb" d="M202.763 0C203.656 3.02 203.067 31.8981 203.04 36.9481L202.213 144.554L166.797 110.286C157.534 101.242 147.497 91.0481 137.866 82.5356C130.582 89.5168 123.342 96.5419 116.145 103.611C102.562 117.117 92.2291 129.298 72.1122 132.879C53.8516 136.129 38.889 131.617 24.004 121.236C22.6115 120.086 21.2466 118.904 19.9103 117.686C7.27031 106.217 0.625311 90.8356 0.0415605 73.8793C-0.561564 57.5544 5.42031 41.6669 16.6428 29.795C27.5847 18.4406 42.5478 11.8369 58.3109 11.4062C84.6597 10.8475 96.8778 22.85 114.21 39.7731C122.093 47.5106 130.022 55.1981 137.997 62.8481C159.43 41.7356 181.019 20.7881 202.763 0Z"></path><path class="fe" d="M58.3656 63.0107C62.0388 62.0482 65.9463 63.142 68.5825 65.8732C71.2194 68.6107 72.1738 72.5545 71.0781 76.1857C69.9831 79.8232 67.0088 82.5857 63.3013 83.4107C57.7181 84.6482 52.1713 81.1857 50.8263 75.6295C49.4819 70.0732 52.8338 64.4607 58.3656 63.0107Z"></path></svg></div>
+        <div class="swimfish sf3" style="--fc:#C8EEF2"><svg class="fish-svg" viewBox="0 0 204 145" xmlns="http://www.w3.org/2000/svg"><path class="fb" d="M202.763 0C203.656 3.02 203.067 31.8981 203.04 36.9481L202.213 144.554L166.797 110.286C157.534 101.242 147.497 91.0481 137.866 82.5356C130.582 89.5168 123.342 96.5419 116.145 103.611C102.562 117.117 92.2291 129.298 72.1122 132.879C53.8516 136.129 38.889 131.617 24.004 121.236C22.6115 120.086 21.2466 118.904 19.9103 117.686C7.27031 106.217 0.625311 90.8356 0.0415605 73.8793C-0.561564 57.5544 5.42031 41.6669 16.6428 29.795C27.5847 18.4406 42.5478 11.8369 58.3109 11.4062C84.6597 10.8475 96.8778 22.85 114.21 39.7731C122.093 47.5106 130.022 55.1981 137.997 62.8481C159.43 41.7356 181.019 20.7881 202.763 0Z"></path><path class="fe" d="M58.3656 63.0107C62.0388 62.0482 65.9463 63.142 68.5825 65.8732C71.2194 68.6107 72.1738 72.5545 71.0781 76.1857C69.9831 79.8232 67.0088 82.5857 63.3013 83.4107C57.7181 84.6482 52.1713 81.1857 50.8263 75.6295C49.4819 70.0732 52.8338 64.4607 58.3656 63.0107Z"></path></svg></div>
+        <div class="swimfish sf4" style="--fc:#7fbdd4"><svg class="fish-svg" viewBox="0 0 204 145" xmlns="http://www.w3.org/2000/svg"><path class="fb" d="M202.763 0C203.656 3.02 203.067 31.8981 203.04 36.9481L202.213 144.554L166.797 110.286C157.534 101.242 147.497 91.0481 137.866 82.5356C130.582 89.5168 123.342 96.5419 116.145 103.611C102.562 117.117 92.2291 129.298 72.1122 132.879C53.8516 136.129 38.889 131.617 24.004 121.236C22.6115 120.086 21.2466 118.904 19.9103 117.686C7.27031 106.217 0.625311 90.8356 0.0415605 73.8793C-0.561564 57.5544 5.42031 41.6669 16.6428 29.795C27.5847 18.4406 42.5478 11.8369 58.3109 11.4062C84.6597 10.8475 96.8778 22.85 114.21 39.7731C122.093 47.5106 130.022 55.1981 137.997 62.8481C159.43 41.7356 181.019 20.7881 202.763 0Z"></path><path class="fe" d="M58.3656 63.0107C62.0388 62.0482 65.9463 63.142 68.5825 65.8732C71.2194 68.6107 72.1738 72.5545 71.0781 76.1857C69.9831 79.8232 67.0088 82.5857 63.3013 83.4107C57.7181 84.6482 52.1713 81.1857 50.8263 75.6295C49.4819 70.0732 52.8338 64.4607 58.3656 63.0107Z"></path></svg></div>
+        <div class="swimfish sf5" style="--fc:#9fd0e0"><svg class="fish-svg" viewBox="0 0 204 145" xmlns="http://www.w3.org/2000/svg"><path class="fb" d="M202.763 0C203.656 3.02 203.067 31.8981 203.04 36.9481L202.213 144.554L166.797 110.286C157.534 101.242 147.497 91.0481 137.866 82.5356C130.582 89.5168 123.342 96.5419 116.145 103.611C102.562 117.117 92.2291 129.298 72.1122 132.879C53.8516 136.129 38.889 131.617 24.004 121.236C22.6115 120.086 21.2466 118.904 19.9103 117.686C7.27031 106.217 0.625311 90.8356 0.0415605 73.8793C-0.561564 57.5544 5.42031 41.6669 16.6428 29.795C27.5847 18.4406 42.5478 11.8369 58.3109 11.4062C84.6597 10.8475 96.8778 22.85 114.21 39.7731C122.093 47.5106 130.022 55.1981 137.997 62.8481C159.43 41.7356 181.019 20.7881 202.763 0Z"></path><path class="fe" d="M58.3656 63.0107C62.0388 62.0482 65.9463 63.142 68.5825 65.8732C71.2194 68.6107 72.1738 72.5545 71.0781 76.1857C69.9831 79.8232 67.0088 82.5857 63.3013 83.4107C57.7181 84.6482 52.1713 81.1857 50.8263 75.6295C49.4819 70.0732 52.8338 64.4607 58.3656 63.0107Z"></path></svg></div>
+      </div>
+      <svg class="waves" viewBox="0 0 1440 110" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path class="wv1" d="M0,50 C240,90 480,10 720,44 C960,78 1200,20 1500,50 L1500,110 L0,110 Z" fill="#9fd0e0" opacity="0.45"></path>
+        <path class="wv2" d="M0,64 C260,30 520,96 780,60 C1020,28 1260,86 1500,58 L1500,110 L0,110 Z" fill="#3a6f9c" opacity="0.75"></path>
+        <path class="wv3" d="M0,80 C240,60 520,104 760,82 C1020,58 1240,100 1500,80 L1500,110 L0,110 Z" fill="#16324A"></path>
+      </svg>
+      <div class="foot-note"><span>© 2026 Vani. Designed with a love for water.</span><span>Made in India</span></div>
+    </div>
+  </footer>
+
+  <!-- ===================== SUB-PAGE FOOTER (one back-home fish) ===================== -->
+  <div class="backfoot" id="sub-footer">
+    <div class="bh" id="backHome" role="button" tabindex="0" aria-label="Go back home">
+      <div class="bf-fish"><svg class="fish-svg" viewBox="0 0 204 145" xmlns="http://www.w3.org/2000/svg" style="--fc:#C8EEF2"><path class="fb" d="M202.763 0C203.656 3.02 203.067 31.8981 203.04 36.9481L202.213 144.554L166.797 110.286C157.534 101.242 147.497 91.0481 137.866 82.5356C130.582 89.5168 123.342 96.5419 116.145 103.611C102.562 117.117 92.2291 129.298 72.1122 132.879C53.8516 136.129 38.889 131.617 24.004 121.236C22.6115 120.086 21.2466 118.904 19.9103 117.686C7.27031 106.217 0.625311 90.8356 0.0415605 73.8793C-0.561564 57.5544 5.42031 41.6669 16.6428 29.795C27.5847 18.4406 42.5478 11.8369 58.3109 11.4062C84.6597 10.8475 96.8778 22.85 114.21 39.7731C122.093 47.5106 130.022 55.1981 137.997 62.8481C159.43 41.7356 181.019 20.7881 202.763 0Z"></path><path class="fe" d="M58.3656 63.0107C62.0388 62.0482 65.9463 63.142 68.5825 65.8732C71.2194 68.6107 72.1738 72.5545 71.0781 76.1857C69.9831 79.8232 67.0088 82.5857 63.3013 83.4107C57.7181 84.6482 52.1713 81.1857 50.8263 75.6295C49.4819 70.0732 52.8338 64.4607 58.3656 63.0107Z"></path></svg></div>
+      <span class="bf-label">click to go back home</span>
+    </div>
+    <svg class="waves" viewBox="0 0 1440 110" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path class="wv1" d="M0,50 C240,90 480,10 720,44 C960,78 1200,20 1500,50 L1500,110 L0,110 Z" fill="#9fd0e0" opacity="0.45"></path>
+      <path class="wv2" d="M0,64 C260,30 520,96 780,60 C1020,28 1260,86 1500,58 L1500,110 L0,110 Z" fill="#3a6f9c" opacity="0.75"></path>
+      <path class="wv3" d="M0,80 C240,60 520,104 760,82 C1020,58 1240,100 1500,80 L1500,110 L0,110 Z" fill="#16324A"></path>
+    </svg>
+  </div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+
+    try{
+      var self = this;
+      function revealIn(scope){ (scope||document).querySelectorAll('.reveal, .g-item').forEach(function(el){ el.classList.add('in'); }); }
+
+      // View switching (real navigation within one page)
+      function showView(id){
+        document.querySelectorAll('.view').forEach(function(v){ v.classList.remove('active'); });
+        var t = document.getElementById('v-'+id);
+        if(t){ t.classList.add('active'); revealIn(t); }
+        document.querySelectorAll('.navlinks a').forEach(function(a){ a.classList.toggle('active', a.getAttribute('data-view')===id); });
+        var hf=document.getElementById('home-footer'), sf=document.getElementById('sub-footer');
+        if(hf) hf.style.display = (id==='home') ? '' : 'none';
+        if(sf) sf.style.display = (id==='home') ? 'none' : 'block';
+        try{ window.scrollTo(0,0); }catch(e){}
+      }
+      document.querySelectorAll('[data-view]').forEach(function(el){
+        el.addEventListener('click', function(e){ e.preventDefault(); showView(el.getAttribute('data-view')); });
+      });
+
+      // Sub-page "back home" fish: swims off, then loads the home view
+      var bh = document.getElementById('backHome');
+      if(bh){
+        bh.addEventListener('click', function(){
+          var f = bh.querySelector('.bf-fish');
+          if(f.classList.contains('go')) return;
+          f.classList.add('go');
+          f.addEventListener('animationend', function h(){ f.classList.remove('go'); f.removeEventListener('animationend', h); showView('home'); });
+        });
+      }
+
+      // Reveal the initial (home) view now, and a global failsafe so nothing can stay hidden
+      revealIn(document.getElementById('v-home'));
+      setTimeout(function(){ revealIn(document); }, 1500);
+
+      // Footer fishes: click to swim off-left and return from the right
+      document.querySelectorAll('.swimfish').forEach(function(f){
+        f.addEventListener('click', function(){
+          if(f.classList.contains('swim')) return;
+          f.classList.add('swim');
+          f.addEventListener('animationend', function h(){ f.classList.remove('swim'); f.removeEventListener('animationend', h); });
+        });
+      });
+
+      // Hero intro entrance (position only) + kolam fishes spin then face cursor
+      var hc = document.querySelector('.hero-copy'); if(hc){ hc.classList.add('enter'); }
+
+      // Word-cycler: role dissolves upward as a wave, next role rises in as a wave
+      var rot = document.querySelector('.rotator');
+      if(rot){
+        var roles = ['Product designer','Interaction designer','UX researcher'];
+        var ri = 0;
+        var paintRole = function(word, mode){
+          rot.textContent = '';
+          for(var c=0;c<word.length;c++){
+            var s = document.createElement('span');
+            s.className = 'r-letter';
+            s.textContent = word.charAt(c) === ' ' ? ' ' : word.charAt(c);
+            s.style.animation = (mode==='in'?'letterIn':'letterOut') + ' .5s cubic-bezier(.4,0,.2,1) both';
+            s.style.animationDelay = (c*0.04) + 's';
+            rot.appendChild(s);
+          }
+          return 500 + (word.length-1)*40;
+        };
+        paintRole(roles[0], 'in');
+        setInterval(function(){
+          var outMs = paintRole(roles[ri], 'out');
+          setTimeout(function(){ ri = (ri+1) % roles.length; paintRole(roles[ri], 'in'); }, outMs);
+        }, 3200);
+      }
+      var inners = Array.prototype.slice.call(document.querySelectorAll('.kfish .fish-inner'));
+      var ready = [];
+      inners.forEach(function(inner, i){ inner._a = 0; ready[i] = false; inner.classList.add('spin'); });
+      setTimeout(function(){ inners.forEach(function(inner, i){ inner.classList.remove('spin'); inner.style.animation='none'; ready[i]=true; }); }, 120);
+      var hero = document.querySelector('.hero');
+      if(hero){
+        hero.addEventListener('mousemove', function(ev){
+          inners.forEach(function(inner, i){
+            if(!ready[i]) return;
+            var r = inner.getBoundingClientRect();
+            var cx = r.left + r.width/2, cy = r.top + r.height/2;
+            var target = Math.atan2(ev.clientY - cy, ev.clientX - cx) * 180 / Math.PI + 180;
+            var delta = ((target - inner._a + 540) % 360) - 180;
+            inner._a += delta;
+            inner.style.rotate = inner._a.toFixed(1) + 'deg';
+          });
+        });
+      }
+    }catch(err){}
+  
+});
+</script>
+</body>
+</html>
