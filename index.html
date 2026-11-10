@@ -137,6 +137,8 @@
     /* ================= WORK view ================= */
     .page-hero{ padding:56px 0 20px; }
     .page-title{ font-family:"Cardo",serif; font-weight:400; font-size:clamp(40px,6vw,78px); line-height:1.03; margin:0; color:var(--ink); }
+    .about-hero{ display:grid; grid-template-columns:1.3fr .9fr; gap:48px; align-items:center; }
+    .about-portrait{ aspect-ratio:1/1; max-width:220px; margin-left:auto; }
     .page-lede{ font-family:"Cardo",serif; font-size:clamp(20px,2.2vw,28px); line-height:1.35; color:var(--ink-soft); max-width:24em; margin:24px 0 0; }
     .works{ display:flex; flex-direction:column; gap:96px; padding:52px 0 40px; }
     .work-grid{ display:grid; grid-template-columns:1.9fr 1fr; gap:24px; align-items:stretch; }
@@ -174,6 +176,7 @@
 
     /* ================= ABOUT view ================= */
     .intro{ display:grid; grid-template-columns:1.3fr .9fr; gap:48px; align-items:start; padding:18px 0 24px; }
+    .intro-solo{ grid-template-columns:1fr; max-width:720px; }
     .intro p{ font-size:18px; line-height:1.75; color:var(--ink-soft); margin:0 0 18px; }
     .portrait{ aspect-ratio:4/5; border-radius:22px; background:linear-gradient(150deg,#66A3BF,#C8EEF2); display:flex; align-items:flex-end; overflow:hidden; color:var(--ink); box-shadow:0 16px 40px rgba(51,104,160,.16); }
     .portrait span{ font-size:13px; letter-spacing:.06em; padding:18px; }
@@ -238,6 +241,7 @@
       .work-meta, .work.rev .work-meta{ max-width:100%; text-align:left; margin-left:0; }
       .garden{ column-count:2; }
       .intro{ grid-template-columns:1fr; gap:24px; } .cv-row{ grid-template-columns:1fr; gap:6px; }
+      .about-hero{ grid-template-columns:1fr; gap:24px; } .about-portrait{ margin-left:0; }
       .foot-contact{ grid-template-columns:1fr; gap:26px; padding:60px 22px 50px; }
       .wrap{ padding:0 22px; } .navbar{ padding:14px 22px; } .navlinks{ gap:16px; font-size:14px; }
     }
@@ -384,14 +388,16 @@ creating an immersive and expressive self discovery experience</p><a class="proj
 
   <!-- ===================== ABOUT / CV ===================== -->
   <div class="view" id="v-about">
-    <header class="wrap page-hero"><p class="eyebrow">About &amp; CV</p><h1 class="page-title serif">A little more<br>about me</h1></header>
-    <section class="wrap intro">
+    <header class="wrap page-hero about-hero">
+      <div><p class="eyebrow">About &amp; CV</p><h1 class="page-title serif">A little more<br>about me</h1></div>
+      <div class="portrait about-portrait"><img src="assets/vani-portrait.png" alt="Vanikalyani"></div>
+    </header>
+    <section class="wrap intro intro-solo">
       <div>
         <p>I’m Vanikalyani, a multidisciplinary designer from India, drawn to Indian art and culture and to the calm that good design can bring. I move between product, UI and research, and I care about the quiet details that make an experience feel effortless.</p>
         <p>I love making things and keeping myself occupied with anything new that excites my mind. Design, for me, is less about decoration and more about clarity: giving people a little more ease in their day.</p>
         <a class="btn btn-primary" href="#">Download CV (PDF)<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"></path></svg></a>
       </div>
-      <div class="portrait"><img src="assets/vani-portrait.png" alt="Vanikalyani"></div>
     </section>
     <section class="wrap block2">
       <h2 class="serif">Experience</h2>
@@ -406,9 +412,9 @@ creating an immersive and expressive self discovery experience</p><a class="proj
     <section class="wrap block2">
       <h2 class="serif">Education</h2>
       <div class="cv-row reveal"><div class="when">2025 – Present</div><div><h4>M.Des</h4><div class="org">Indian Institute of Technology, Guwahati · CGPA 9.38 (Current)</div></div></div>
-      <div class="cv-row reveal"><div class="when">2019 – 2023</div><div><h4>B.E</h4><div class="org">College of Engineering, Osmania University · CGPA 8.56</div></div></div>
-      <div class="cv-row reveal"><div class="when">2019</div><div><h4>Senior Secondary</h4><div class="org">Nasr Boys Junior College · 96.4%</div></div></div>
-      <div class="cv-row reveal"><div class="when">2017</div><div><h4>Secondary</h4><div class="org">Vivekananda Vidyankethan High School · CGPA 9.7</div></div></div>
+      <div class="cv-row reveal"><div class="when">2019 – 2023</div><div><h4>B.E</h4><div class="org">College of Engineering, Osmania University, Hyderabad · CGPA 8.56</div></div></div>
+      <div class="cv-row reveal"><div class="when">2019</div><div><h4>Senior Secondary</h4><div class="org">Alphores Junior College, Karimnagar · Percentage: 97.23%</div></div></div>
+      <div class="cv-row reveal"><div class="when">2017</div><div><h4>Secondary</h4><div class="org">Vivekananda Vidyankethan High School, Karimnagar · Percentage: 92.15%</div></div></div>
     </section>
     <section class="wrap block2">
       <h2 class="serif">What I do</h2>
@@ -416,7 +422,8 @@ creating an immersive and expressive self discovery experience</p><a class="proj
         <span class="skill-pill">Product Design</span><span class="skill-pill">UI Design</span><span class="skill-pill">UX Research</span><span class="skill-pill">Prototyping</span><span class="skill-pill">Design Thinking</span><span class="skill-pill">Micro Interactions</span><span class="skill-pill">Wireframing</span><span class="skill-pill">Design Systems</span><span class="skill-pill">Figma</span>
       </div>
     </section>
-    <section class="wrap about-socials">
+    <section class="wrap block2 about-socials">
+      <h2 class="serif">Contact me</h2>
       <div class="socials">
         <a href="https://www.linkedin.com/in/vani-kalyani-r/" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="2.5" width="19" height="19" rx="3"></rect><circle cx="7" cy="8" r="1.15" fill="currentColor" stroke="none"></circle><path d="M7 11v6"></path><path d="M11 17v-6M11 13.4c0-2 6-2.2 6 .4V17"></path></svg></a>
         <a href="https://www.behance.net/vanikalyanir03" target="_blank" rel="noopener" aria-label="Behance" title="Behance"><span class="beh">Bē</span></a>
